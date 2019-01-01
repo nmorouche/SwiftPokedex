@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomepageViewController" customModule="pokedexAPI" customModuleProvider="target">
             <connections>
+                <outlet property="imageTest" destination="qh2-lL-k3P" id="9hn-Qq-Bo2"/>
                 <outlet property="test" destination="p2h-Hn-ngm" id="zEQ-AV-oz1"/>
                 <outlet property="test2" destination="r8i-l3-cse" id="AVo-C2-GoY"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -46,6 +47,9 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qh2-lL-k3P">
+                    <rect key="frame" x="129" y="44" width="116" height="118"/>
+                </imageView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -55,8 +59,12 @@
                 <constraint firstItem="r8i-l3-cse" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Gof-kG-tiB"/>
                 <constraint firstItem="p2h-Hn-ngm" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="ILD-sQ-QIP"/>
                 <constraint firstItem="p2h-Hn-ngm" firstAttribute="top" secondItem="r8i-l3-cse" secondAttribute="bottom" constant="23.5" id="RuA-OZ-tgv"/>
+                <constraint firstItem="qh2-lL-k3P" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="24" id="i1j-em-KmE"/>
+                <constraint firstItem="qh2-lL-k3P" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="129" id="ttM-uR-gp4"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="qh2-lL-k3P" secondAttribute="trailing" constant="130" id="xJo-x8-pd1"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="39.200000000000003" y="46.326836581709152"/>
         </view>
     </objects>
 </document>

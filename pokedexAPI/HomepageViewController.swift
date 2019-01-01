@@ -17,7 +17,8 @@ class HomepageViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-
+    @IBOutlet weak var imageTest: UIImageView!
+    
     @IBOutlet var test2: UILabel!
     @IBOutlet var test: UITextField!
     
@@ -34,9 +35,19 @@ class HomepageViewController: UIViewController {
                 print("Could not get pokemon's id from JSON")
                 return
             }
+            guard let imageJson = json["sprites"] as? [String:Any] else {
+                return
+            }
+            guard let image = imageJson["front_default"] as? String else {
+                return
+            }
             let pokemon = Pokemon(id: id, name: name)
             self.test2.text = "Nom : \(pokemon.name) #\(pokemon.id)"
+            let imageURL = URL(string: image)
+            let imageData = try! Data(contentsOf: imageURL!)
+            self.imageTest.image = UIImage(data: imageData)
             print(pokemon)
+            print(image)
         }
     }
 }
