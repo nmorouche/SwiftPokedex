@@ -50,6 +50,13 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qh2-lL-k3P">
                     <rect key="frame" x="129" y="44" width="116" height="118"/>
                 </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vyo-Ys-qu1">
+                    <rect key="frame" x="148" y="440" width="79" height="30"/>
+                    <state key="normal" title="pokemon fr"/>
+                    <connections>
+                        <action selector="pokefr:" destination="-1" eventType="touchUpInside" id="jJs-6T-BiI"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -58,6 +65,8 @@
                 <constraint firstItem="wGC-w7-Xum" firstAttribute="top" secondItem="p2h-Hn-ngm" secondAttribute="bottom" constant="22.5" id="E1F-uQ-E6q"/>
                 <constraint firstItem="r8i-l3-cse" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Gof-kG-tiB"/>
                 <constraint firstItem="p2h-Hn-ngm" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="ILD-sQ-QIP"/>
+                <constraint firstItem="Vyo-Ys-qu1" firstAttribute="top" secondItem="wGC-w7-Xum" secondAttribute="bottom" constant="37" id="OfH-sb-pBb"/>
+                <constraint firstItem="Vyo-Ys-qu1" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="QUy-TG-Uxz"/>
                 <constraint firstItem="p2h-Hn-ngm" firstAttribute="top" secondItem="r8i-l3-cse" secondAttribute="bottom" constant="23.5" id="RuA-OZ-tgv"/>
                 <constraint firstItem="qh2-lL-k3P" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="24" id="i1j-em-KmE"/>
                 <constraint firstItem="qh2-lL-k3P" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="129" id="ttM-uR-gp4"/>
