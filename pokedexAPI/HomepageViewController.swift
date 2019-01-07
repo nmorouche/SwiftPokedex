@@ -13,8 +13,39 @@ class HomepageViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        Alamofire.request("https://pokeapi.co/api/v2/pokemon/").responseJSON { (res) in
+            guard let json = res.result.value as? [String:Any],
+                let jsonUrl = json["results"] as? [[String: Any]] else {
+                return
+            }
+            
+            jsonUrl.forEach { word in
+                guard let url = word["url"] as? String else {
+                    return
+                }
+                Alamofire.request(url).responseJSON { (res) in
+                    guard let jsonPoke = res.result.value as? [String:Any],
+                        let id = jsonPoke["id"] as? Int,
+                        let imageJson = jsonPoke["sprites"] as? [String:Any],
+                        let image = imageJson["front_default"] as? String,
+                        let spicies = jsonPoke["species"] as? [String:Any],
+                        let urlFr = spicies["url"] as? String else {
+                        return
+                    }
+                    Alamofire.request(urlFr).responseJSON{ (res) in
+                        guard let jsonFr = res.result.value as? [String: Any],
+                            let namesFr = jsonFr["names"] as? [[String:Any]],
+                            let name = namesFr[6]["name"] as? String else {
+                            return
+                        }
+                        print("ID : \(id), Nom : \(name), ImageURL : \(image)")
+                    }
+                }
+            }
+            /*let imageURL = URL(string: image)
+            let imageData = try! Data(contentsOf: imageURL!)
+            self.imageTest.image = UIImage(data: imageData)*/
+        }
     }
     
     @IBOutlet weak var imageTest: UIImageView!
@@ -40,7 +71,7 @@ class HomepageViewController: UIViewController {
             guard let image = imageJson["front_default"] as? String else {
                 return
             }
-            let pokemon = Pokemon(id: id, name: name)
+            let pokemon = Pokemon(id: id, name: name, imageURL: name)
             self.test2.text = "Nom : \(pokemon.name) #\(pokemon.id)"
             
             let imageURL = URL(string: image)
