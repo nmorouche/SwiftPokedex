@@ -10,6 +10,7 @@ import UIKit
 import Alamofire
 
 class HomepageViewController: UIViewController {
+    var pokemons: [Pokemon] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,13 +39,19 @@ class HomepageViewController: UIViewController {
                             let name = namesFr[6]["name"] as? String else {
                             return
                         }
-                        print("ID : \(id), Nom : \(name), ImageURL : \(image)")
+                        let pokemon = Pokemon(id: id, name: name, imageURL: image)
+                        self.pokemons.append(pokemon)
                     }
                 }
             }
             /*let imageURL = URL(string: image)
             let imageData = try! Data(contentsOf: imageURL!)
             self.imageTest.image = UIImage(data: imageData)*/
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 10) { // in half a second...
+            self.pokemons.forEach { i in
+                print(i)
+            }
         }
     }
     
