@@ -10,11 +10,82 @@ import UIKit
 import Alamofire
 
 class HomepageViewController: UIViewController {
-    var pokemons: [Pokemon] = []
+    public var pokemons: [Pokemon] = []
+    var jsontxt: String = ""
+    public var json: [[String:Any]] = []
 
+    
     override func viewDidLoad() {
+        
         super.viewDidLoad()
-        Alamofire.request("https://pokeapi.co/api/v2/pokemon/").responseJSON { (res) in
+        /*Alamofire.request("https://pokeapi.co/api/v2/pokemon/").responseJSON { (res) in
+            guard let json = res.result.value as? [String:Any],
+                let jsonUrl = json["results"] as? [[String: Any]] else {
+                    return
+            }
+            jsonUrl.forEach { url in
+                guard let urlPoke = url["url"] as? String else { return }
+                Alamofire.request(urlPoke).responseJSON { (res) in
+                    guard let jsonPoke = res.result.value as? [String:Any],
+                        let id = jsonPoke["id"] as? Int,
+                        let imageJson = jsonPoke["sprites"] as? [String:Any],
+                        let image = imageJson["front_default"] as? String,
+                        let spicies = jsonPoke["species"] as? [String:Any],
+                        let urlFr = spicies["url"] as? String else {
+                            return
+                    }
+                    self.pokemons.append(Pokemon(id: id, name: image, sprite: image))
+                }
+            }
+         }
+        print(self.pokemons)*/
+        Alamofire.request("https://pokeapi.co/api/v2/pokemon/").responseJSON(completionHandler: { (res) in
+            guard let json = res.result.value as? [String:Any],
+                let jsonUrl = json["results"] as? [[String: Any]] else {
+                    return
+            }
+            jsonUrl.forEach { x in
+                guard let url = x["url"] as? String else { return }
+                Alamofire.request(url).responseJSON(completionHandler: { (res2) in
+                        guard let jsonPoke = res2.result.value as? [String:Any],
+                            let id = jsonPoke["id"] as? Int,
+                            let imageJson = jsonPoke["sprites"] as? [String:Any],
+                            let image = imageJson["front_default"] as? String,
+                            let spicies = jsonPoke["species"] as? [String:Any],
+                            let urlFr = spicies["url"] as? String else {
+                                return
+                        }
+                    Alamofire.request(urlFr).responseJSON(completionHandler: { (res3) in
+                        guard let poke = res3.result.value as? [String:Any],
+                        let names = poke["names"] as? [[String:Any]],
+                        let name = names[6]["name"] as? String else {
+                                return
+                        }
+                        let localpokemon = Pokemon(id: id, name: name, sprite: image)
+                        self.pokemons.append(localpokemon)
+                        //print("\(id),\(name),\(image)\n")
+                    })
+                })
+                }
+            print(self.pokemons)
+            })
+        DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
+            self.pokemons.sort {
+                $0.id < $1.id
+            }
+            print(self.pokemons)
+        }
+        /*
+        self.json.forEach { i in
+            guard let url = i["url"] as? String else { return }
+            PokemonServices.default.getInfosPokemon(url: url, completion: { pokemon in
+                self.pokemons.append(pokemon)
+                print("TEST")
+            })
+            print("2eme print " , pokemons)
+        }*/
+    }
+        /*Alamofire.request("https://pokeapi.co/api/v2/pokemon/").responseJSON { (res) in
             guard let json = res.result.value as? [String:Any],
                 let jsonUrl = json["results"] as? [[String: Any]] else {
                 return
@@ -49,17 +120,17 @@ class HomepageViewController: UIViewController {
             self.imageTest.image = UIImage(data: imageData)*/
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 10) { // in half a second...
-            self.pokemons.forEach { i in
-                print(i)
-            }
+            print(self.pokemons)
         }
-    }
+    }*/
     
     @IBOutlet weak var imageTest: UIImageView!
     
     @IBOutlet var test2: UILabel!
     @IBOutlet var test: UITextField!
     @IBAction func connectPokeAPI(_ sender: UIButton) {
+        print(self.pokemons)
+        /*
         Alamofire.request("https://pokeapi.co/api/v2/pokemon/1/").responseJSON { (res) in
             guard let json = res.result.value as? [String: Any] else {
                 return
@@ -84,9 +155,9 @@ class HomepageViewController: UIViewController {
             let imageURL = URL(string: image)
             let imageData = try! Data(contentsOf: imageURL!)
             self.imageTest.image = UIImage(data: imageData)
-            print(pokemon)
+            print(self.pokemons)
             print(image)
-        }
+        }*/
     }
     
     @IBAction func pokefr(_ sender: UIButton) {
