@@ -26,7 +26,7 @@ public class PokemonServices {
         }
     }
     
-    public func getInfosPokemon(url: String, completion: @escaping (Pokemon) -> Void) {
+    /*public func getInfosPokemon(url: String, completion: @escaping (Pokemon) -> Void) {
         var pokemon: Pokemon!
         Alamofire.request(url).responseJSON { (res) in
             guard let jsonPoke = res.result.value as? [String:Any],
@@ -39,6 +39,7 @@ public class PokemonServices {
             pokemon = Pokemon(name: name, id: id, sprite: image)
                 completion(pokemon)
         }
-    }
+    }*/
+    
     
 }

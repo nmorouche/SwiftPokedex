@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PokeDetailViewController" customModule="pokedexAPI" customModuleProvider="target">
+            <connections>
+                <outlet property="changeImageText" destination="l60-Ih-xod" id="hFn-Y5-Do3"/>
+                <outlet property="image" destination="hLw-aV-3KV" id="OJw-Lp-G2R"/>
+                <outlet property="name" destination="eQo-on-W5k" id="l2q-bV-F5H"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hLw-aV-3KV">
+                    <rect key="frame" x="37" y="283" width="300" height="100"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eQo-on-W5k">
+                    <rect key="frame" x="166.5" y="526" width="42" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l60-Ih-xod">
+                    <rect key="frame" x="168.5" y="172" width="38" height="30"/>
+                    <state key="normal" title="Shiny"/>
+                    <connections>
+                        <action selector="changeImageShiny:" destination="-1" eventType="touchUpInside" id="lB7-T3-tp0"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="hLw-aV-3KV" firstAttribute="top" secondItem="l60-Ih-xod" secondAttribute="bottom" constant="81" id="5Tw-bh-Bzs"/>
+                <constraint firstItem="l60-Ih-xod" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Nmn-EH-kTA"/>
+                <constraint firstItem="eQo-on-W5k" firstAttribute="top" secondItem="l60-Ih-xod" secondAttribute="bottom" constant="324" id="ZhK-bk-klA"/>
+                <constraint firstItem="l60-Ih-xod" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="dTr-Pe-iUD"/>
+                <constraint firstItem="hLw-aV-3KV" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="nKT-Em-NKq"/>
+                <constraint firstItem="hLw-aV-3KV" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="uEt-FP-4tu"/>
+                <constraint firstItem="eQo-on-W5k" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="usw-UQ-Scx"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="40.799999999999997" y="46.326836581709152"/>
+        </view>
+    </objects>
+</document>
