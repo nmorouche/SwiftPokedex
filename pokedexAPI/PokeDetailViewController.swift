@@ -30,15 +30,13 @@ class PokeDetailViewController: UIViewController {
         image.image = UIImage(data: imageData)
 
         name.text = "\(pokemon.name) \(pokemon.type1!) \(pokemon.type2 ?? "")"
-        
         changeImageText.setTitle("Shiny", for: .normal)
         // Do any additional setup after loading the view.
     }
 
     @IBAction func changeImageShiny(_ sender: UIButton) {
-        
         if(changeImageText.currentTitle == "Shiny") {
-            changeImageText.setTitle("Default", for: .normal)
+            changeImageText.setTitle("Normal", for: .normal)
             let imageURL = URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/\(pokemon.id).png")
             let imageData = try! Data(contentsOf: imageURL!)
             image.image = UIImage(data: imageData)

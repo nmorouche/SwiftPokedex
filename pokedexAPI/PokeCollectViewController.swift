@@ -22,8 +22,6 @@ class PokeCollectViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        /*self.view.backgroundColor = UIColor(patternImage: UIImage(named:"background")!)
-        self.collectionView.backgroundColor = UIColor(patternImage: UIImage(named:"background")!)*/
         let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
         backgroundImage.image = UIImage(named: "background")
         backgroundImage.contentMode =  UIViewContentMode.scaleAspectFill
@@ -44,12 +42,10 @@ class PokeCollectViewController: UIViewController {
         let p = gesture.location(in: self.collectionView)
         
         if let indexPath = self.collectionView.indexPathForItem(at: p) {
-            //let cell = self.collectionView.cellForItem(at: indexPath)
-            let alert = UIAlertController(title: "\(self.pokemons[indexPath.row].name) Added !", message: "\(self.pokemons[indexPath.row].name) has been added in your library", preferredStyle: .alert)
+            let alert = UIAlertController(title: "\(self.pokemons[indexPath.row].name) ajouté !", message: "\(self.pokemons[indexPath.row].name) a été ajouté dans vos favoris", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             self.present(alert, animated: true)
-            //print(self.pokemons[indexPath.row].name)
-        } else {
+            } else {
             print("no index path")
         }
     }
@@ -83,6 +79,7 @@ extension PokeCollectViewController: UICollectionViewDataSource {
         let idChoosen = self.pokemons[indexPath.row].id
         let nameChoose = self.pokemons[indexPath.row].name
         let imageChoosen = self.pokemons[indexPath.row].sprite
+        var type: [String] = []
         
         
         Alamofire.request("https://pokeapi.co/api/v2/pokemon/\(String(idChoosen))/").responseJSON { (res) in
@@ -92,6 +89,7 @@ extension PokeCollectViewController: UICollectionViewDataSource {
                 let type1 = types1["name"] as? String else {
                     return
             }
+            type.append(type1)
             if (jsonUrl.count > 1) {
                 guard let types2 = jsonUrl[1]["type"] as? [String : Any],
                     let type2 = types2["name"] as? String else {
