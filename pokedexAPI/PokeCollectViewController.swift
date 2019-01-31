@@ -11,6 +11,7 @@ import Alamofire
 
 class PokeCollectViewController: UIViewController {
     
+    @IBOutlet var searchbar: UISearchBar!
     @IBOutlet weak var collectionView: UICollectionView!
     var pokemons : [Pokemon]!
     
@@ -22,6 +23,7 @@ class PokeCollectViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchbar.delegate = self as? UISearchBarDelegate
         let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
         backgroundImage.image = UIImage(named: "background")
         backgroundImage.contentMode =  UIViewContentMode.scaleAspectFill

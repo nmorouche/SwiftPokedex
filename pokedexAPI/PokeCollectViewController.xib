@@ -13,6 +13,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PokeCollectViewController" customModule="pokedexAPI" customModuleProvider="target">
             <connections>
                 <outlet property="collectionView" destination="1uw-zw-sBu" id="Y7C-IC-Ref"/>
+                <outlet property="searchbar" destination="Ugu-pO-BKG" id="sYE-bY-xEk"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -22,7 +23,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="1uw-zw-sBu">
-                    <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                    <rect key="frame" x="0.0" y="98" width="375" height="569"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="5" id="fBx-mg-K6k">
@@ -32,15 +33,24 @@
                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     </collectionViewFlowLayout>
                 </collectionView>
+                <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Ugu-pO-BKG">
+                    <rect key="frame" x="0.0" y="42" width="375" height="56"/>
+                    <textInputTraits key="textInputTraits"/>
+                </searchBar>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="1uw-zw-sBu" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="4dT-Bu-a9S"/>
-                <constraint firstItem="1uw-zw-sBu" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="a6w-ZD-XgZ"/>
+                <constraint firstItem="Ugu-pO-BKG" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="Fua-hA-NH3"/>
+                <constraint firstItem="1uw-zw-sBu" firstAttribute="top" secondItem="Ugu-pO-BKG" secondAttribute="bottom" id="KIu-D1-XOp"/>
+                <constraint firstItem="Ugu-pO-BKG" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Kbg-6N-Ydd"/>
+                <constraint firstItem="Ugu-pO-BKG" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="22" id="Qya-1i-LJF"/>
+                <constraint firstItem="1uw-zw-sBu" firstAttribute="top" secondItem="Ugu-pO-BKG" secondAttribute="bottom" id="RBx-EX-dIF"/>
                 <constraint firstItem="1uw-zw-sBu" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="h2N-fI-fPO"/>
                 <constraint firstItem="1uw-zw-sBu" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="reT-z7-zl9"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="138.40000000000001" y="152.47376311844079"/>
         </view>
     </objects>
 </document>
