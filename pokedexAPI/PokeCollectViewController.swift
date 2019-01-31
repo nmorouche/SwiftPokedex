@@ -81,28 +81,30 @@ extension PokeCollectViewController: UICollectionViewDataSource {
         let idChoosen = self.pokemons[indexPath.row].id
         let nameChoose = self.pokemons[indexPath.row].name
         let imageChoosen = self.pokemons[indexPath.row].sprite
-        var type: [String] = []
+        //var type: [String] = []
         
         
         Alamofire.request("https://pokeapi.co/api/v2/pokemon/\(String(idChoosen))/").responseJSON { (res) in
+            var types : [String] = []
+            
             guard let json = res.result.value as? [String:Any],
-                let jsonUrl = json["types"] as? [[String: Any]],
-                let types1 = jsonUrl[0]["type"] as? [String : Any],
-                let type1 = types1["name"] as? String else {
+                let jsonUrl = json["types"] as? [[String: Any]] else {
                     return
             }
-            type.append(type1)
-            if (jsonUrl.count > 1) {
-                guard let types2 = jsonUrl[1]["type"] as? [String : Any],
-                    let type2 = types2["name"] as? String else {
+            var i = 0
+            jsonUrl.forEach{ x in
+                
+                //types = x["name"] as! [String]
+                guard let typ = jsonUrl[i]["type"] as? [String : Any],
+                    let type = typ["name"] as? String else {
                         return
                 }
-                let next = PokeDetailViewController.newInstance(pokemon: Pokemon(id: idChoosen, name: nameChoose, sprite: imageChoosen, type1: type1, type2: type2))
-                self.navigationController?.pushViewController(next, animated: true)
-            } else {
-                let next = PokeDetailViewController.newInstance(pokemon: Pokemon(id: idChoosen, name: nameChoose, sprite: imageChoosen, type1: type1))
-                self.navigationController?.pushViewController(next, animated: true)
+                i = i + 1
+                
+                types.append(type)
             }
+            let next = PokeDetailViewController.newInstance(pokemon: Pokemon(id: idChoosen, name: nameChoose, sprite: imageChoosen, types: types))
+            self.navigationController?.pushViewController(next, animated: true)
         }
     }
 }

@@ -13,16 +13,32 @@ public struct Pokemon {
     var name: String
     var id: Int
     var sprite: String
-    var type1: String?
-    var type2: String?
-
-
-    init(id: Int, name: String, sprite: String, type1: String? = nil, type2: String? = nil) {
+    var types: [String]?
+    
+    
+    init(id: Int, name: String, sprite: String, types: [String]? = nil) {
         self.id = id
         self.name = name
         self.sprite = sprite
-        self.type1 = type1
-        self.type2 = type2
+        self.types = types
+    }
+    
+    init?(json: [String: Any]) {
+        
+        guard let id = json["id"] as? Int,
+            let name = json["name"] as? String,
+            let sprite = json["sprite"] as? String,
+            let types = json["types"] as? [String]
+            else {
+                return nil
+        }
+        
+        self.init(id: id, name: name, sprite: sprite, types: types)
+        
+        self.id = id
+        self.name = name
+        self.sprite = sprite
+        self.types = types
     }
     
 }

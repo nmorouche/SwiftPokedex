@@ -29,7 +29,7 @@ class PokeDetailViewController: UIViewController {
         let imageData = try! Data(contentsOf: imageURL!)
         image.image = UIImage(data: imageData)
 
-        name.text = "\(pokemon.name) \(pokemon.type1!) \(pokemon.type2 ?? "")"
+        name.text = "\(pokemon.name) \(pokemon.types![0])"
         changeImageText.setTitle("Shiny", for: .normal)
         // Do any additional setup after loading the view.
     }
