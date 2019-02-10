@@ -81,4 +81,48 @@ public class PokemonServices {
         }
     }
     
+    public func findAll(completed: @escaping ([Pokemon]) -> Void) {
+        
+        Alamofire.request("https://pacific-sierra-64951.herokuapp.com/show/all").responseJSON { (res) in
+            guard let m = res.value as? [[String: Any]] else {
+                return
+            }
+            let pokemons = m.compactMap({ (elem) -> Pokemon? in
+                return Pokemon(json: elem)
+            })
+            completed(pokemons)
+        }
+    }
+    
+    public func delete(id: Int) {
+        Alamofire.request("https://pacific-sierra-64951.herokuapp.com/delete/\(id)", method: .delete).response { (res) in
+            //completion(res.response?.statusCode == 201)
+        }
+    }
+    
 }
+/* REQUETE FAVORIS
+ 
+ public func update(pokemon: Pokemon) {
+ 
+ let params = [
+ "id": pokemon.id,
+ "name": pokemon.name,
+ "sprite": pokemon.sprite,
+ "types": pokemon.types,
+ ] as [String : Any]
+ 
+ Alamofire.request("https://pacific-sierra-64951.herokuapp.com/update/\(pokemon.id)", method: .put, parameters: params, encoding: JSONEncoding.default).responseString { (res) in
+ print(res)
+ //completion(res.response?.statusCode == 201)
+ }
+ }
+ 
+ public func delete(pokemon: Pokemon) {
+ 
+ Alamofire.request("https://pacific-sierra-64951.herokuapp.com/delete/\(pokemon.id)", method: .delete).response { (res) in
+ //completion(res.response?.statusCode == 201)
+ }
+ }
+ 
+ FIN REQUETE FAVORIS */

@@ -12,10 +12,11 @@ import Alamofire
 class HomepageViewController: UIViewController {
     
     public var pokemons: [Pokemon] = []
-    public var json: [[String:Any]] = []
     let shapeLayer = CAShapeLayer()
     
     override func viewDidLoad() {
+        changePageOutlet.isHidden = true
+        changePageOutlet.isEnabled = false
         let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
         backgroundImage.image = UIImage(named: "background")
         backgroundImage.contentMode =  UIViewContentMode.scaleAspectFill
@@ -53,13 +54,14 @@ class HomepageViewController: UIViewController {
                         PokemonServices.default.getSoloPokemonDetails(urlFR: urlFR, completed: { (pokemonname) in
                             let newPokemon = Pokemon(id: id, name: pokemonname, sprite: image, types: types)
                             self.pokemons.append(newPokemon)
-                            print(newPokemon)
-                            print(self.pokemons.count)
                             if self.pokemons.count == 892 {
                                 self.pokemons.sort {
                                     $0.id < $1.id
                                 }
-                                print(self.pokemons.last)
+                                self.changePageOutlet.isHidden = false
+                                self.changePageOutlet.isEnabled = true
+                                let next = PokeCollectViewController.newInstance(pokemons: self.pokemons)
+                                self.navigationController?.pushViewController(next, animated: true)
                             }
                         })
                     })
@@ -67,16 +69,8 @@ class HomepageViewController: UIViewController {
             })
         })
         // FIN TEST CIRCLE BOUTON
-        
-        /*DispatchQueue.main.asyncAfter(deadline: .now() + 20) {
-            self.pokemons.sort {
-                $0.id < $1.id
-            }
-            print(self.pokemons)
-        }*/
     }
     @objc private func handleTap() {
-        print("test waw")
         let basicAnimation = CABasicAnimation(keyPath: "strokeEnd")
         basicAnimation.toValue = 1
         basicAnimation.duration = 3
@@ -88,46 +82,9 @@ class HomepageViewController: UIViewController {
     
     @IBOutlet var test: UITextField!
     
+    @IBOutlet var changePageOutlet: UIButton!
     @IBAction func changePage(_ sender: UIButton) {
-        self.pokemons.sort {
-            $0.id < $1.id
-        }
         let next = PokeCollectViewController.newInstance(pokemons: pokemons)
         self.navigationController?.pushViewController(next, animated: true)
     }
-    
-    /*func fetchPokemons(limit: Int, completed: @escaping ([Pokemon]) -> Void) {
-        Alamofire.request("https://pokeapi-215911.firebaseapp.com/api/v2/pokemon/?offset=0&limit=\(limit)").responseJSON(completionHandler: { (res) in
-            guard let json = res.result.value as? [String:Any],
-                let jsonUrl = json["results"] as? [[String: Any]] else {
-                    return
-            }
-            var pokemonss: [Pokemon] = []
-            jsonUrl.forEach { x in
-                guard let url = x["url"] as? String else { return }
-                Alamofire.request(url).responseJSON(completionHandler: { (res2) in
-                    guard let jsonPoke = res2.result.value as? [String:Any],
-                        let id = jsonPoke["id"] as? Int,
-                        let imageJson = jsonPoke["sprites"] as? [String:Any],
-                        let image = imageJson["front_default"] as? String,
-                        let spicies = jsonPoke["species"] as? [String:Any],
-                        let urlFr = spicies["url"] as? String else {
-                            return
-                    }
-                    Alamofire.request(urlFr).responseJSON(completionHandler: { (res3) in
-                        guard let poke = res3.result.value as? [String:Any],
-                            let names = poke["names"] as? [[String:Any]],
-                            let name = names[6]["name"] as? String else {
-                                return
-                        }
-                        let localpokemon = Pokemon(id: id, name: name, sprite: image)
-                        pokemonss.append(localpokemon)
-                        if pokemonss.count == limit - 1 {
-                            completed(pokemonss)
-                        }
-                    })
-                })
-            }
-        })
-    }*/
 }

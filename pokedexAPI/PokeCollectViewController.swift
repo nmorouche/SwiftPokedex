@@ -22,6 +22,10 @@ class PokeCollectViewController: UIViewController {
     }
     
     override func viewDidLoad() {
+        self.navigationItem.title = "Pokédex"
+        let backButton = UIBarButtonItem(title: "", style: .plain, target: navigationController, action: nil)
+        navigationItem.leftBarButtonItem = backButton
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Favoris", style: .plain, target: self, action: #selector(Favoris))
         super.viewDidLoad()
         searchbar.delegate = self as? UISearchBarDelegate
         let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
@@ -87,8 +91,16 @@ extension PokeCollectViewController: UICollectionViewDataSource {
         let typesChoosen = self.pokemons[indexPath.row].types
         //var type: [String] = []
         
-            let next = PokeDetailViewController.newInstance(pokemon: Pokemon(id: idChoosen, name: nameChoose, sprite: imageChoosen, types: typesChoosen))
-            self.navigationController?.pushViewController(next, animated: true)
+        let next = PokeDetailViewController.newInstance(pokemon: Pokemon(id: idChoosen, name: nameChoose, sprite: imageChoosen, types: typesChoosen))
+        self.navigationController?.pushViewController(next, animated: true)
         
     }
+    
+    @objc private func Favoris() {
+        PokemonServices.default.findAll { (pokemons) in
+            let favPage = FavorisViewController.newInstance(pokemon: pokemons)
+            self.navigationController?.pushViewController(favPage, animated: true)
+        }
+    }
+    
 }

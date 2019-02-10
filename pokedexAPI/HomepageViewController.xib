@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomepageViewController" customModule="pokedexAPI" customModuleProvider="target">
             <connections>
+                <outlet property="changePageOutlet" destination="PcL-Jw-LF9" id="5qG-oY-h0u"/>
                 <outlet property="test" destination="GUZ-zv-goN" id="u8U-Fs-bur"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>

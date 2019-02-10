@@ -24,6 +24,8 @@
 		5E22840121D7D335000F2F6E /* Pokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E22840021D7D335000F2F6E /* Pokemon.swift */; };
 		5E79CB9921D627C100007D32 /* HomepageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E79CB9721D627C100007D32 /* HomepageViewController.swift */; };
 		5E79CB9A21D627C100007D32 /* HomepageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E79CB9821D627C100007D32 /* HomepageViewController.xib */; };
+		5EDC3576221079EA004BAA14 /* FavCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EDC3574221079EA004BAA14 /* FavCollectionViewCell.swift */; };
+		5EDC3577221079EA004BAA14 /* FavCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EDC3575221079EA004BAA14 /* FavCollectionViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +49,8 @@
 		5E22840021D7D335000F2F6E /* Pokemon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pokemon.swift; sourceTree = "<group>"; };
 		5E79CB9721D627C100007D32 /* HomepageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomepageViewController.swift; sourceTree = "<group>"; };
 		5E79CB9821D627C100007D32 /* HomepageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomepageViewController.xib; sourceTree = "<group>"; };
+		5EDC3574221079EA004BAA14 /* FavCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavCollectionViewCell.swift; sourceTree = "<group>"; };
+		5EDC3575221079EA004BAA14 /* FavCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavCollectionViewCell.xib; sourceTree = "<group>"; };
 		9F44E2540065DE89FADDB2EF /* Pods-pokedexAPI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pokedexAPI.release.xcconfig"; path = "Pods/Target Support Files/Pods-pokedexAPI/Pods-pokedexAPI.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -99,6 +103,8 @@
 				0CD3D94321EC398A00EB5F9E /* PokeDetailViewController.swift */,
 				0CD3D94421EC398A00EB5F9E /* PokeDetailViewController.xib */,
 				0CD9AC8B221049200054F623 /* FavorisViewController.swift */,
+				5EDC3574221079EA004BAA14 /* FavCollectionViewCell.swift */,
+				5EDC3575221079EA004BAA14 /* FavCollectionViewCell.xib */,
 				0CD9AC8C221049200054F623 /* FavorisViewController.xib */,
 			);
 			path = pokedexAPI;
@@ -195,6 +201,7 @@
 				0CD3D94621EC398A00EB5F9E /* PokeDetailViewController.xib in Resources */,
 				5E06136121EC0AAD006DCC80 /* PokeCollectViewController.xib in Resources */,
 				5E06136521EC0B2F006DCC80 /* PokemonCollectionViewCell.xib in Resources */,
+				5EDC3577221079EA004BAA14 /* FavCollectionViewCell.xib in Resources */,
 				507DD34C21D14BE70072CE7A /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -259,6 +266,7 @@
 				5E22840121D7D335000F2F6E /* Pokemon.swift in Sources */,
 				0CD9AC8D221049200054F623 /* FavorisViewController.swift in Sources */,
 				5E06136421EC0B2F006DCC80 /* PokemonCollectionViewCell.swift in Sources */,
+				5EDC3576221079EA004BAA14 /* FavCollectionViewCell.swift in Sources */,
 				5E06135B21EBA928006DCC80 /* PokemonServices.swift in Sources */,
 				507DD34521D14BE60072CE7A /* AppDelegate.swift in Sources */,
 				5E79CB9921D627C100007D32 /* HomepageViewController.swift in Sources */,
