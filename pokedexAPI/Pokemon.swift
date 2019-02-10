@@ -13,10 +13,10 @@ public struct Pokemon {
     var name: String
     var id: Int
     var sprite: String
-    var types: [String]?
+    var types: [String]
     
     
-    init(id: Int, name: String, sprite: String, types: [String]? = nil) {
+    init(id: Int, name: String, sprite: String, types: [String]) {
         self.id = id
         self.name = name
         self.sprite = sprite

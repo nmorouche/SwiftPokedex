@@ -29,15 +29,32 @@ public class PokemonServices {
             completed(tabPoke)
         }
     }
-    public func getSoloPokemon(url: String, completed: @escaping (Int,String,String) -> Void) {
+    public func getSoloPokemon(url: String, completed: @escaping (Int,String,String,[String]) -> Void) {
         Alamofire.request(url).responseJSON { (res) in
+            var types : [String] = []
             guard let jsonPokemon = res.value as? [String:Any],
                 let id = jsonPokemon["id"] as? Int,
                 let imageJson = jsonPokemon["sprites"] as? [String:Any],
                 let image = imageJson["front_default"] as? String,
                 let species = jsonPokemon["species"] as? [String:Any],
-                let urlSpecies = species["url"] as? String else {return}
-            completed(id,image,urlSpecies)
+                let urlSpecies = species["url"] as? String,
+                let jsonUrl = jsonPokemon["types"] as? [[String: Any]] else {
+                    return
+            }
+            var i = 0
+            jsonUrl.forEach{ x in
+                
+                //types = x["name"] as! [String]
+                guard let typ = jsonUrl[i]["type"] as? [String : Any],
+                    let type = typ["name"] as? String else {
+                        return
+                }
+                i = i + 1
+                
+                types.append(type)
+            }
+
+            completed(id,image,urlSpecies,types)
         }
     }
     public func getSoloPokemonDetails(urlFR: String, completed: @escaping (String) -> Void){
@@ -46,6 +63,21 @@ public class PokemonServices {
                 let names = pokemonDetail["names"] as? [[String:Any]],
                 let nameFR = names[6]["name"] as? String else {return}
             completed(nameFR)
+        }
+    }
+    
+    public func add(pokemon: Pokemon) {
+        
+        let params = [
+            "id": pokemon.id,
+            "name": pokemon.name,
+            "sprite": pokemon.sprite,
+            "types": pokemon.types,
+            ] as [String : Any]
+        
+        Alamofire.request("https://pacific-sierra-64951.herokuapp.com/create", method: .post, parameters: params, encoding: JSONEncoding.default).responseString { (res) in
+            print(res)
+            //completion(res.response?.statusCode == 201)
         }
     }
     

@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		0CD3D94521EC398A00EB5F9E /* PokeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD3D94321EC398A00EB5F9E /* PokeDetailViewController.swift */; };
 		0CD3D94621EC398A00EB5F9E /* PokeDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0CD3D94421EC398A00EB5F9E /* PokeDetailViewController.xib */; };
+		0CD9AC8D221049200054F623 /* FavorisViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD9AC8B221049200054F623 /* FavorisViewController.swift */; };
+		0CD9AC8E221049210054F623 /* FavorisViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0CD9AC8C221049200054F623 /* FavorisViewController.xib */; };
 		18158F91F2524B972D66EB26 /* Pods_pokedexAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25A7B44AA59F3C61A0FD30EA /* Pods_pokedexAPI.framework */; };
 		507DD34521D14BE60072CE7A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507DD34421D14BE60072CE7A /* AppDelegate.swift */; };
 		507DD34721D14BE60072CE7A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507DD34621D14BE60072CE7A /* ViewController.swift */; };
@@ -27,6 +29,8 @@
 /* Begin PBXFileReference section */
 		0CD3D94321EC398A00EB5F9E /* PokeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokeDetailViewController.swift; sourceTree = "<group>"; };
 		0CD3D94421EC398A00EB5F9E /* PokeDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PokeDetailViewController.xib; sourceTree = "<group>"; };
+		0CD9AC8B221049200054F623 /* FavorisViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavorisViewController.swift; sourceTree = "<group>"; };
+		0CD9AC8C221049200054F623 /* FavorisViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavorisViewController.xib; sourceTree = "<group>"; };
 		25A7B44AA59F3C61A0FD30EA /* Pods_pokedexAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_pokedexAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		270B9176F49DFF81DE6219E9 /* Pods-pokedexAPI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pokedexAPI.debug.xcconfig"; path = "Pods/Target Support Files/Pods-pokedexAPI/Pods-pokedexAPI.debug.xcconfig"; sourceTree = "<group>"; };
 		507DD34121D14BE60072CE7A /* pokedexAPI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pokedexAPI.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -94,6 +98,8 @@
 				507DD35021D14BE70072CE7A /* Info.plist */,
 				0CD3D94321EC398A00EB5F9E /* PokeDetailViewController.swift */,
 				0CD3D94421EC398A00EB5F9E /* PokeDetailViewController.xib */,
+				0CD9AC8B221049200054F623 /* FavorisViewController.swift */,
+				0CD9AC8C221049200054F623 /* FavorisViewController.xib */,
 			);
 			path = pokedexAPI;
 			sourceTree = "<group>";
@@ -183,6 +189,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0CD9AC8E221049210054F623 /* FavorisViewController.xib in Resources */,
 				5E79CB9A21D627C100007D32 /* HomepageViewController.xib in Resources */,
 				507DD34F21D14BE70072CE7A /* LaunchScreen.storyboard in Resources */,
 				0CD3D94621EC398A00EB5F9E /* PokeDetailViewController.xib in Resources */,
@@ -250,6 +257,7 @@
 				507DD34721D14BE60072CE7A /* ViewController.swift in Sources */,
 				0CD3D94521EC398A00EB5F9E /* PokeDetailViewController.swift in Sources */,
 				5E22840121D7D335000F2F6E /* Pokemon.swift in Sources */,
+				0CD9AC8D221049200054F623 /* FavorisViewController.swift in Sources */,
 				5E06136421EC0B2F006DCC80 /* PokemonCollectionViewCell.swift in Sources */,
 				5E06135B21EBA928006DCC80 /* PokemonServices.swift in Sources */,
 				507DD34521D14BE60072CE7A /* AppDelegate.swift in Sources */,

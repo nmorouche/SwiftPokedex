@@ -32,6 +32,8 @@ class HomepageViewController: UIViewController {
         tracklayer.strokeColor = UIColor.black.cgColor
         tracklayer.lineWidth = 10
         tracklayer.lineCap = kCALineCapRound
+        //tracklayer.position = self.view.center
+        //tracklayer.anchorPoint = CGPoint(x:0.5, y:0.5)
         view.layer.addSublayer(tracklayer)
 
         shapeLayer.path = circularPath.cgPath
@@ -47,9 +49,9 @@ class HomepageViewController: UIViewController {
             PokemonServices.default.getPokemonList(limit: res1, completed: { (res2) in
                 res2.forEach { res3 in
                     guard let resForEach = res3["url"] as? String else {return}
-                    PokemonServices.default.getSoloPokemon(url: resForEach, completed: { (id, image, urlFR) in
+                    PokemonServices.default.getSoloPokemon(url: resForEach, completed: { (id, image, urlFR, types) in
                         PokemonServices.default.getSoloPokemonDetails(urlFR: urlFR, completed: { (pokemonname) in
-                            let newPokemon = Pokemon(id: id, name: pokemonname, sprite: image)
+                            let newPokemon = Pokemon(id: id, name: pokemonname, sprite: image, types: types)
                             self.pokemons.append(newPokemon)
                             print(newPokemon)
                             print(self.pokemons.count)
@@ -94,7 +96,7 @@ class HomepageViewController: UIViewController {
         self.navigationController?.pushViewController(next, animated: true)
     }
     
-    func fetchPokemons(limit: Int, completed: @escaping ([Pokemon]) -> Void) {
+    /*func fetchPokemons(limit: Int, completed: @escaping ([Pokemon]) -> Void) {
         Alamofire.request("https://pokeapi-215911.firebaseapp.com/api/v2/pokemon/?offset=0&limit=\(limit)").responseJSON(completionHandler: { (res) in
             guard let json = res.result.value as? [String:Any],
                 let jsonUrl = json["results"] as? [[String: Any]] else {
@@ -127,5 +129,5 @@ class HomepageViewController: UIViewController {
                 })
             }
         })
-    }
+    }*/
 }
