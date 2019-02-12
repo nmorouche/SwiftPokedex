@@ -51,6 +51,12 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="PcL-Jw-LF9" secondAttribute="trailing" constant="91" id="uUw-88-Hyx"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <variation key="default">
+                <mask key="subviews">
+                    <exclude reference="PcL-Jw-LF9"/>
+                    <exclude reference="GUZ-zv-goN"/>
+                </mask>
+            </variation>
             <point key="canvasLocation" x="39.200000000000003" y="46.326836581709152"/>
         </view>
     </objects>

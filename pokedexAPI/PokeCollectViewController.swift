@@ -9,7 +9,7 @@
 import UIKit
 import Alamofire
 
-class PokeCollectViewController: UIViewController {
+class PokeCollectViewController: UIViewController, UISearchBarDelegate {
     
     @IBOutlet var searchbar: UISearchBar!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -22,12 +22,15 @@ class PokeCollectViewController: UIViewController {
     }
     
     override func viewDidLoad() {
+        searchbar.delegate = self
+        let searchBarBackgroundImage = UIImage()
+        searchbar.setBackgroundImage(searchBarBackgroundImage, for: .any, barMetrics: .default)
+        searchbar.scopeBarBackgroundImage = searchBarBackgroundImage
         self.navigationItem.title = "Pokédex"
         let backButton = UIBarButtonItem(title: "", style: .plain, target: navigationController, action: nil)
         navigationItem.leftBarButtonItem = backButton
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Favoris", style: .plain, target: self, action: #selector(Favoris))
         super.viewDidLoad()
-        searchbar.delegate = self as? UISearchBarDelegate
         let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
         backgroundImage.image = UIImage(named: "background")
         backgroundImage.contentMode =  UIViewContentMode.scaleAspectFill
@@ -58,6 +61,15 @@ class PokeCollectViewController: UIViewController {
             print("no index path")
         }
     }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String){
+        
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int){
+        
+    }
+    
 }
 
 extension PokeCollectViewController: UICollectionViewDelegate {

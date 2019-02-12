@@ -39,21 +39,20 @@ class FavorisViewController: UIViewController {
     @IBOutlet var FavCollectionView: UICollectionView!
     
     @objc func handleLongPress(gesture: UILongPressGestureRecognizer!) {
-        if (gesture.state != .ended) {
+        if gesture.state != .ended {
             return
         }
         let p = gesture.location(in: self.FavCollectionView)
         
         if let indexPath = self.FavCollectionView.indexPathForItem(at: p) {
             //PokemonServices.default.delete(id: self.pokemons[indexPath.row].id)
-            let alert = UIAlertController(title: "Supprimé \(self.pokemons[indexPath.row].name) ?", message: "Voulez-vous supprimer \(self.pokemons[indexPath.row].name) de vos favoris ?", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Supprimer \(self.pokemons[indexPath.row].name) ?", message: "Voulez-vous supprimer \(self.pokemons[indexPath.row].name) de vos favoris ?", preferredStyle: .alert)
             let ok = UIAlertAction(title: "Oui", style: .default, handler: { (action) -> Void in
                 PokemonServices.default.delete(id: self.pokemons[indexPath.row].id)
                 self.pokemons.remove(at: indexPath.row)
                 self.FavCollectionView.reloadData()
             })
             let cancel = UIAlertAction(title: "Non", style: .default, handler: { (action) -> Void in
-                
             })
             alert.addAction(ok)
             alert.addAction(cancel)
@@ -71,7 +70,7 @@ extension FavorisViewController: UICollectionViewDelegate {
 }
 
 extension FavorisViewController: UICollectionViewDataSource {
-    public static let pokemonCellId = "toz"
+    public static let pokemonCellId = "POKEMONFAV_CELL_ID"
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.pokemons.count
@@ -92,7 +91,6 @@ extension FavorisViewController: UICollectionViewDataSource {
         let nameChoose = self.pokemons[indexPath.row].name
         let imageChoosen = self.pokemons[indexPath.row].sprite
         let typesChoosen = self.pokemons[indexPath.row].types
-        //var type: [String] = []
         
         let next = PokeDetailViewController.newInstance(pokemon: Pokemon(id: idChoosen, name: nameChoose, sprite: imageChoosen, types: typesChoosen))
         self.navigationController?.pushViewController(next, animated: true)

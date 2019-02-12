@@ -33,8 +33,10 @@
                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     </collectionViewFlowLayout>
                 </collectionView>
-                <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Ugu-pO-BKG">
+                <searchBar contentMode="redraw" placeholder="Rechercher un pokemon" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ugu-pO-BKG">
                     <rect key="frame" x="0.0" y="42" width="375" height="56"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="barTintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <textInputTraits key="textInputTraits"/>
                 </searchBar>
             </subviews>

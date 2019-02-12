@@ -15,13 +15,14 @@ class HomepageViewController: UIViewController {
     let shapeLayer = CAShapeLayer()
     
     override func viewDidLoad() {
-        changePageOutlet.isHidden = true
-        changePageOutlet.isEnabled = false
+        self.navigationItem.title = "Chargement ..."
         let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
-        backgroundImage.image = UIImage(named: "background")
+        backgroundImage.image = UIImage(named: "loadingbackground")
         backgroundImage.contentMode =  UIViewContentMode.scaleAspectFill
         self.view.insertSubview(backgroundImage, at: 0)
-        
+        test.isSecureTextEntry = true
+        changePageOutlet.isHidden = false
+        changePageOutlet.isEnabled = false
         super.viewDidLoad()
         // TEST CIRCLE BOUTON
         
