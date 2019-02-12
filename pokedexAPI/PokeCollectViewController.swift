@@ -53,10 +53,10 @@ class PokeCollectViewController: UIViewController, UISearchBarDelegate {
         let p = gesture.location(in: self.collectionView)
         
         if let indexPath = self.collectionView.indexPathForItem(at: p) {
-            let pokeAdd = Pokemon(id: self.pokemons[indexPath.row].id, name: self.pokemons[indexPath.row].name, sprite: self.pokemons[indexPath.row].sprite, types: self.pokemons[indexPath.row].types)
+            let pokeAdd = Pokemon(id: self.pokemonSearch[indexPath.row].id, name: self.pokemonSearch[indexPath.row].name, sprite: self.pokemonSearch[indexPath.row].sprite, types: self.pokemonSearch[indexPath.row].types)
             print(pokeAdd)
             PokemonServices.default.add(pokemon: pokeAdd)
-            let alert = UIAlertController(title: "\(self.pokemons[indexPath.row].name) ajouté !", message: "\(self.pokemons[indexPath.row].name) a été ajouté dans vos favoris", preferredStyle: .alert)
+            let alert = UIAlertController(title: "\(self.pokemonSearch[indexPath.row].name) ajouté !", message: "\(self.pokemonSearch[indexPath.row].name) a été ajouté dans vos favoris", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             self.present(alert, animated: true)
             } else {
