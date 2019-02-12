@@ -66,6 +66,17 @@ public class PokemonServices {
         }
     }
     
+    public func getShiny(id: Int, completed: @escaping (String) -> Void) {
+        Alamofire.request("https://pokeapi.co/api/v2/pokemon/\(id)/").responseJSON { (res) in
+            guard let jsonPokemon = res.value as? [String:Any],
+                let imageJson = jsonPokemon["sprites"] as? [String:Any],
+                let image = imageJson["front_shiny"] as? String else {
+                    return
+                }
+            completed(image)
+        }
+    }
+    
     public func add(pokemon: Pokemon) {
         
         let params = [
@@ -99,7 +110,6 @@ public class PokemonServices {
             //completion(res.response?.statusCode == 201)
         }
     }
-    
 }
 /* REQUETE FAVORIS
  

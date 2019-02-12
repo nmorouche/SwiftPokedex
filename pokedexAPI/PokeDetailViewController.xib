@@ -15,6 +15,7 @@
                 <outlet property="changeImageText" destination="l60-Ih-xod" id="hFn-Y5-Do3"/>
                 <outlet property="image" destination="hLw-aV-3KV" id="OJw-Lp-G2R"/>
                 <outlet property="name" destination="eQo-on-W5k" id="l2q-bV-F5H"/>
+                <outlet property="shinyButton" destination="l60-Ih-xod" id="UKw-HS-eMD"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

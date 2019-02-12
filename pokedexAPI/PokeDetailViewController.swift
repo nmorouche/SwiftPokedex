@@ -14,6 +14,7 @@ class PokeDetailViewController: UIViewController {
     @IBOutlet weak var changeImageText: UIButton!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var image: UIImageView!
+    @IBOutlet var shinyButton: UIButton!
     var pokemon: Pokemon!
     
     class func newInstance(pokemon: Pokemon) -> PokeDetailViewController {
@@ -23,6 +24,12 @@ class PokeDetailViewController: UIViewController {
     }
     
     override func viewDidLoad() {
+        shinyButton.isEnabled = false
+        shinyButton.isHidden = true
+        PokemonServices.default.getShiny(id: pokemon.id) { (res) in
+            self.shinyButton.isEnabled = true
+            self.shinyButton.isHidden = false
+        }
         super.viewDidLoad()
         
         let imageURL = URL(string: pokemon.sprite)
@@ -38,16 +45,16 @@ class PokeDetailViewController: UIViewController {
     }
 
     @IBAction func changeImageShiny(_ sender: UIButton) {
-        if(changeImageText.currentTitle == "Shiny") {
-            changeImageText.setTitle("Normal", for: .normal)
-            let imageURL = URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/\(pokemon.id).png")
+        if(self.changeImageText.currentTitle == "Shiny") {
+            self.changeImageText.setTitle("Normal", for: .normal)
+            let imageURL = URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/\(self.pokemon.id).png")
             let imageData = try! Data(contentsOf: imageURL!)
-            image.image = UIImage(data: imageData)
+            self.image.image = UIImage(data: imageData)
         } else {
-            changeImageText.setTitle("Shiny", for: .normal)
-            let imageURL = URL(string: pokemon.sprite)
+            self.changeImageText.setTitle("Shiny", for: .normal)
+            let imageURL = URL(string: self.pokemon.sprite)
             let imageData = try! Data(contentsOf: imageURL!)
-            image.image = UIImage(data: imageData)
+            self.image.image = UIImage(data: imageData)
         }
     }
 }

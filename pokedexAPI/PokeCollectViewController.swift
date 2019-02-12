@@ -14,6 +14,7 @@ class PokeCollectViewController: UIViewController, UISearchBarDelegate {
     @IBOutlet var searchbar: UISearchBar!
     @IBOutlet weak var collectionView: UICollectionView!
     var pokemons : [Pokemon]!
+    var pokemonSearch : [Pokemon]!
     
     class func newInstance(pokemons: [Pokemon]) -> PokeCollectViewController {
         let mlvc = PokeCollectViewController()
@@ -22,6 +23,7 @@ class PokeCollectViewController: UIViewController, UISearchBarDelegate {
     }
     
     override func viewDidLoad() {
+        pokemonSearch = pokemons
         searchbar.delegate = self
         let searchBarBackgroundImage = UIImage()
         searchbar.setBackgroundImage(searchBarBackgroundImage, for: .any, barMetrics: .default)
@@ -63,7 +65,15 @@ class PokeCollectViewController: UIViewController, UISearchBarDelegate {
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String){
-        
+        guard !searchText.isEmpty else {
+            pokemonSearch = pokemons
+            collectionView.reloadData()
+            return
+        }
+        pokemonSearch = pokemons.filter({ pokemon -> Bool in
+            return pokemon.name.contains(searchText)
+        })
+        collectionView.reloadData()
     }
     
     func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int){
@@ -81,26 +91,26 @@ extension PokeCollectViewController: UICollectionViewDataSource {
     public static let pokemonCellId = "POKEMON_CELL_ID"
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.pokemons.count
+        return self.pokemonSearch.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PokeCollectViewController.pokemonCellId, for: indexPath) as! PokemonCollectionViewCell
         
-        let imageURL = URL(string: self.pokemons[indexPath.row].sprite)
+        let imageURL = URL(string: self.pokemonSearch[indexPath.row].sprite)
         let imageData = try! Data(contentsOf: imageURL!)
         cell.image.image = UIImage(data: imageData)
-        cell.title.text = "\(self.pokemons[indexPath.row].name)"
-        cell.id.text = "#\(self.pokemons[indexPath.row].id)"
+        cell.title.text = "\(self.pokemonSearch[indexPath.row].name)"
+        cell.id.text = "#\(self.pokemonSearch[indexPath.row].id)"
         
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let idChoosen = self.pokemons[indexPath.row].id
-        let nameChoose = self.pokemons[indexPath.row].name
-        let imageChoosen = self.pokemons[indexPath.row].sprite
-        let typesChoosen = self.pokemons[indexPath.row].types
+        let idChoosen = self.pokemonSearch[indexPath.row].id
+        let nameChoose = self.pokemonSearch[indexPath.row].name
+        let imageChoosen = self.pokemonSearch[indexPath.row].sprite
+        let typesChoosen = self.pokemonSearch[indexPath.row].types
         //var type: [String] = []
         
         let next = PokeDetailViewController.newInstance(pokemon: Pokemon(id: idChoosen, name: nameChoose, sprite: imageChoosen, types: typesChoosen))
