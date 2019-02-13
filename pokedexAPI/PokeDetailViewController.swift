@@ -16,6 +16,7 @@ class PokeDetailViewController: UIViewController {
     @IBOutlet weak var image: UIImageView!
     @IBOutlet var shinyButton: UIButton!
     var pokemon: Pokemon!
+    var imageShiny: String!
     
     class func newInstance(pokemon: Pokemon) -> PokeDetailViewController {
         let mlvc = PokeDetailViewController()
@@ -29,9 +30,9 @@ class PokeDetailViewController: UIViewController {
         PokemonServices.default.getShiny(id: pokemon.id) { (res) in
             self.shinyButton.isEnabled = true
             self.shinyButton.isHidden = false
+            self.imageShiny = res
         }
         super.viewDidLoad()
-        
         let imageURL = URL(string: pokemon.sprite)
         let imageData = try! Data(contentsOf: imageURL!)
         var stringtext = "\(pokemon.name) "
@@ -47,7 +48,7 @@ class PokeDetailViewController: UIViewController {
     @IBAction func changeImageShiny(_ sender: UIButton) {
         if(self.changeImageText.currentTitle == "Shiny") {
             self.changeImageText.setTitle("Normal", for: .normal)
-            let imageURL = URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/\(self.pokemon.id).png")
+            let imageURL = URL(string: self.imageShiny)
             let imageData = try! Data(contentsOf: imageURL!)
             self.image.image = UIImage(data: imageData)
         } else {
