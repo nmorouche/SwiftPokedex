@@ -50,7 +50,7 @@ class HomepageViewController: UIViewController {
         PokemonServices.default.getPokemon(completed: { (res1) in
             PokemonServices.default.getPokemonList(limit: res1, completed: { (res2) in
                 print(res2.count)
-                var i = 1
+                var i = 0
                 res2.forEach { res3 in
                     
                     guard let resForEach = res3["url"] as? String else {return}
@@ -58,7 +58,7 @@ class HomepageViewController: UIViewController {
                         PokemonServices.default.getSoloPokemonDetails(urlFR: urlFR, completed: { (pokemonname) in
                             let newPokemon = Pokemon(id: id, name: pokemonname, sprite: image, types: types)
                             self.pokemons.append(newPokemon)
-                            if i == res2.count {
+                            if i == 891 {
                                 self.pokemons.sort {
                                     $0.id < $1.id
                                 }
