@@ -17,9 +17,9 @@ class PokeCollectViewController: UIViewController, UISearchBarDelegate {
     var pokemonSearch : [Pokemon]!
     
     class func newInstance(pokemons: [Pokemon]) -> PokeCollectViewController {
-        let mlvc = PokeCollectViewController()
-        mlvc.pokemons = pokemons
-        return mlvc
+        let pcvc = PokeCollectViewController()
+        pcvc.pokemons = pokemons
+        return pcvc
     }
     
     override func viewDidLoad() {
@@ -51,7 +51,6 @@ class PokeCollectViewController: UIViewController, UISearchBarDelegate {
             return
         }
         let p = gesture.location(in: self.collectionView)
-        
         if let indexPath = self.collectionView.indexPathForItem(at: p) {
             let pokeAdd = Pokemon(id: self.pokemonSearch[indexPath.row].id, name: self.pokemonSearch[indexPath.row].name, sprite: self.pokemonSearch[indexPath.row].sprite, types: self.pokemonSearch[indexPath.row].types)
             print(pokeAdd)
@@ -75,11 +74,6 @@ class PokeCollectViewController: UIViewController, UISearchBarDelegate {
         })
         collectionView.reloadData()
     }
-    
-    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int){
-        
-    }
-    
 }
 
 extension PokeCollectViewController: UICollectionViewDelegate {
@@ -96,7 +90,6 @@ extension PokeCollectViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PokeCollectViewController.pokemonCellId, for: indexPath) as! PokemonCollectionViewCell
-        
         let imageURL = URL(string: self.pokemonSearch[indexPath.row].sprite)
         let imageData = try! Data(contentsOf: imageURL!)
         cell.image.image = UIImage(data: imageData)
@@ -112,10 +105,8 @@ extension PokeCollectViewController: UICollectionViewDataSource {
         let imageChoosen = self.pokemonSearch[indexPath.row].sprite
         let typesChoosen = self.pokemonSearch[indexPath.row].types
         //var type: [String] = []
-        
         let next = PokeDetailViewController.newInstance(pokemon: Pokemon(id: idChoosen, name: nameChoose, sprite: imageChoosen, types: typesChoosen))
         self.navigationController?.pushViewController(next, animated: true)
-        
     }
     
     @objc private func Favoris() {
@@ -124,5 +115,4 @@ extension PokeCollectViewController: UICollectionViewDataSource {
             self.navigationController?.pushViewController(favPage, animated: true)
         }
     }
-    
 }

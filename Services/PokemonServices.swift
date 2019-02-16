@@ -111,6 +111,7 @@ public class PokemonServices {
         }
     }
 }
+
 /* REQUETE FAVORIS
  
  public func update(pokemon: Pokemon) {

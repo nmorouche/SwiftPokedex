@@ -49,21 +49,23 @@ class HomepageViewController: UIViewController {
         
         PokemonServices.default.getPokemon(completed: { (res1) in
             PokemonServices.default.getPokemonList(limit: res1, completed: { (res2) in
+                print(res2.count)
+                var i = 1
                 res2.forEach { res3 in
+                    
                     guard let resForEach = res3["url"] as? String else {return}
                     PokemonServices.default.getSoloPokemon(url: resForEach, completed: { (id, image, urlFR, types) in
                         PokemonServices.default.getSoloPokemonDetails(urlFR: urlFR, completed: { (pokemonname) in
                             let newPokemon = Pokemon(id: id, name: pokemonname, sprite: image, types: types)
                             self.pokemons.append(newPokemon)
-                            if self.pokemons.count == 892 {
+                            if i == res2.count {
                                 self.pokemons.sort {
                                     $0.id < $1.id
                                 }
-                                self.changePageOutlet.isHidden = false
-                                self.changePageOutlet.isEnabled = true
                                 let next = PokeCollectViewController.newInstance(pokemons: self.pokemons)
                                 self.navigationController?.pushViewController(next, animated: true)
                             }
+                            i += 1
                         })
                     })
                 }
