@@ -42,7 +42,7 @@ class PokeCollectViewController: UIViewController, UISearchBarDelegate {
         self.collectionView.register(UINib(nibName: "PokemonCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: PokeCollectViewController.pokemonCellId)
         // Do any additional setup after loading the view.
         let lpgr = UILongPressGestureRecognizer(target: self, action: #selector(self.handleLongPress(gesture:)))
-        lpgr.minimumPressDuration = 2.0
+        lpgr.minimumPressDuration = 1.0
         collectionView.addGestureRecognizer(lpgr)
     }
     

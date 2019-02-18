@@ -15,6 +15,9 @@ class PokeDetailViewController: UIViewController {
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var image: UIImageView!
     @IBOutlet var switchShiny: UISwitch!
+    @IBOutlet var typeslogo1: UIImageView!
+    @IBOutlet var typeslogo2: UIImageView!
+    @IBOutlet var typeslogo3: UIImageView!
     
     var pokemon: Pokemon!
     var imageShiny: String!
@@ -47,6 +50,12 @@ class PokeDetailViewController: UIViewController {
         var stringtext = "\(pokemon.name) "
         for type in pokemon.types {
             stringtext += "\(type) "
+        }
+        switch(pokemon.types.count){
+            case 2: self.typeslogo1.image = UIImage(named: self.pokemon.types[1])
+                    self.typeslogo3.image = UIImage(named: self.pokemon.types[0])
+                break
+            default: self.typeslogo2.image = UIImage(named: self.pokemon.types[0])
         }
         image.image = UIImage(data: imageData)
         name.text = stringtext

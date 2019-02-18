@@ -13,7 +13,7 @@ class FavorisViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let alert = UIAlertController(title: "Comment ça marche", message: "Modifier: Appuyez avec deux doigts pour modifier le nom d'un pokémon\nSupprimer: Rester appuyez au moins une seconde sur un pokémon afin de le supprimer", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Comment ça marche", message: "Modifier : Appuyez avec deux doigts pour modifier le nom d'un pokémon\n\nSupprimer : Rester appuyez au moins une seconde sur un pokémon afin de le supprimer", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "J'ai compris", style: .default, handler: nil))
         self.present(alert, animated: true)
         let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
@@ -27,7 +27,7 @@ class FavorisViewController: UIViewController {
         //print(pokemons!)
         
         let lpgr = UILongPressGestureRecognizer(target: self, action: #selector(self.handleLongPress(gesture:)))
-        lpgr.minimumPressDuration = 2.0
+        lpgr.minimumPressDuration = 1.0
         FavCollectionView.addGestureRecognizer(lpgr)
         
         let tgr = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(gesture:)))
