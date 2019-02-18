@@ -125,11 +125,4 @@ public class PokemonServices {
             //completion(res.response?.statusCode == 201)
         }
     }
-    
-    public func delete(pokemon: Pokemon) {
-        
-        Alamofire.request("https://pacific-sierra-64951.herokuapp.com/delete/\(pokemon.id)", method: .delete).response { (res) in
-            //completion(res.response?.statusCode == 201)
-        }
-    }
 }
