@@ -26,6 +26,10 @@ class FavorisViewController: UIViewController {
         let lpgr = UILongPressGestureRecognizer(target: self, action: #selector(self.handleLongPress(gesture:)))
         lpgr.minimumPressDuration = 2.0
         FavCollectionView.addGestureRecognizer(lpgr)
+        
+        let tgr = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(gesture:)))
+        tgr.numberOfTouchesRequired = 2
+        FavCollectionView.addGestureRecognizer(tgr)
         // Do any additional setup after loading the view.
     }
     
@@ -36,6 +40,37 @@ class FavorisViewController: UIViewController {
         return pdvc
     }
     
+    @objc func handleTap(gesture: UITapGestureRecognizer!) {
+        
+        let p = gesture.location(in: self.FavCollectionView)
+        
+        if let indexPath = self.FavCollectionView.indexPathForItem(at: p) {
+            let alert = UIAlertController(title: "Modifier \(self.pokemons[indexPath.row].name) ?", message: "Voulez-vous modifier le nom de \(self.pokemons[indexPath.row].name) de vos favoris ?", preferredStyle: .alert)
+            
+            alert.addTextField(configurationHandler: { (textfield) in
+                textfield.placeholder = "Change name"
+            })
+            let ok = UIAlertAction(title: "Oui", style: .default, handler: { (action) -> Void in
+                let addText = alert.textFields![0] as UITextField
+                if (addText.text != "") {
+                    //self.pokemons[indexPath.row].name = addText.text!
+                    PokemonServices.default.update(pokemon: Pokemon(id: self.pokemons[indexPath.row].id, name: addText.text!, sprite: self.pokemons[indexPath.row].sprite, types: self.pokemons[indexPath.row].types))
+                }
+                self.pokemons[indexPath.row].name = addText.text!
+                self.FavCollectionView.reloadData()
+            })
+            let cancel = UIAlertAction(title: "Non", style: .default, handler: { (action) -> Void in
+                
+            })
+            
+            alert.addAction(ok)
+            alert.addAction(cancel)
+            self.present(alert, animated: true)
+        } else {
+            print("no index path")
+        }
+    }
+
     @IBOutlet var FavCollectionView: UICollectionView!
     
     @objc func handleLongPress(gesture: UILongPressGestureRecognizer!) {
