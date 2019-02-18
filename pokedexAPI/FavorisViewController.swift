@@ -13,6 +13,9 @@ class FavorisViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        let alert = UIAlertController(title: "Comment ça marche", message: "Modifier: Appuyez avec deux doigts pour modifier le nom d'un pokémon\nSupprimer: Rester appuyez au moins une seconde sur un pokémon afin de le supprimer", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "J'ai compris", style: .default, handler: nil))
+        self.present(alert, animated: true)
         let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
         backgroundImage.image = UIImage(named: "background")
         backgroundImage.contentMode =  UIViewContentMode.scaleAspectFill

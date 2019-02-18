@@ -50,6 +50,7 @@ class PokeDetailViewController: UIViewController {
         }
         image.image = UIImage(data: imageData)
         name.text = stringtext
+        print(stringtext)
         // Do any additional setup after loading the view.
         switchShiny.isOn = false
     }

@@ -12,8 +12,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomepageViewController" customModule="pokedexAPI" customModuleProvider="target">
             <connections>
-                <outlet property="changePageOutlet" destination="PcL-Jw-LF9" id="5qG-oY-h0u"/>
-                <outlet property="test" destination="GUZ-zv-goN" id="u8U-Fs-bur"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -21,42 +19,8 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PcL-Jw-LF9">
-                    <rect key="frame" x="91" y="0.0" width="193" height="95"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="69"/>
-                    <state key="normal" title="Button">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </state>
-                    <connections>
-                        <action selector="changePage:" destination="-1" eventType="touchUpInside" id="gC3-PI-ux6"/>
-                    </connections>
-                </button>
-                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="TEST" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GUZ-zv-goN">
-                    <rect key="frame" x="139" y="607" width="97" height="30"/>
-                    <nil key="textColor"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
-                </textField>
-            </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-            <constraints>
-                <constraint firstItem="PcL-Jw-LF9" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="91" id="0y0-0P-d0r"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="GUZ-zv-goN" secondAttribute="trailing" constant="139" id="47Z-Zf-k3I"/>
-                <constraint firstItem="GUZ-zv-goN" firstAttribute="top" secondItem="PcL-Jw-LF9" secondAttribute="bottom" constant="512" id="5C2-9Z-JIY"/>
-                <constraint firstItem="PcL-Jw-LF9" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="88J-5L-cqt"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="PcL-Jw-LF9" secondAttribute="bottom" constant="572" id="OZJ-wb-Uif"/>
-                <constraint firstItem="GUZ-zv-goN" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="139" id="P2D-VI-b0c"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="GUZ-zv-goN" secondAttribute="bottom" constant="30" id="jRG-ik-IhT"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="PcL-Jw-LF9" secondAttribute="trailing" constant="91" id="uUw-88-Hyx"/>
-            </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <variation key="default">
-                <mask key="subviews">
-                    <exclude reference="PcL-Jw-LF9"/>
-                    <exclude reference="GUZ-zv-goN"/>
-                </mask>
-            </variation>
             <point key="canvasLocation" x="39.200000000000003" y="46.326836581709152"/>
         </view>
     </objects>

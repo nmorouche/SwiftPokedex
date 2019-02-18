@@ -29,10 +29,10 @@ class PokeCollectViewController: UIViewController, UISearchBarDelegate {
         searchbar.setBackgroundImage(searchBarBackgroundImage, for: .any, barMetrics: .default)
         searchbar.scopeBarBackgroundImage = searchBarBackgroundImage
         self.navigationItem.title = "Pokédex"
-        let backButton = UIBarButtonItem(title: "", style: .plain, target: navigationController, action: nil)
-        navigationItem.leftBarButtonItem = backButton
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Favoris", style: .plain, target: self, action: #selector(Favoris))
         super.viewDidLoad()
+        let backButton = UIBarButtonItem(title: "", style: .plain, target: navigationController, action: nil)
+        navigationItem.leftBarButtonItem = backButton
         let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
         backgroundImage.image = UIImage(named: "background")
         backgroundImage.contentMode =  UIViewContentMode.scaleAspectFill

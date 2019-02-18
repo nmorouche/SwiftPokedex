@@ -50,10 +50,8 @@ public class PokemonServices {
                         return
                 }
                 i = i + 1
-                
                 types.append(type)
             }
-
             completed(id,image,urlSpecies,types)
         }
     }
