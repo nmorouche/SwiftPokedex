@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class FavorisViewController: UIViewController {
     var pokemons: [Pokemon]!
@@ -21,6 +22,7 @@ class FavorisViewController: UIViewController {
         collectionViewSetup()
         doubleTap()
         longPressure()
+        helpButton()
     }
     
     func setBackground(){
@@ -57,6 +59,10 @@ class FavorisViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "J'ai compris", style: .default, handler: nil))
         self.present(alert, animated: true)
         GlobalVar.check = false
+    }
+    
+    @objc func alertHelper() {
+        alertInfo()
     }
     
     class func newInstance(pokemon: [Pokemon]) ->
@@ -122,6 +128,16 @@ class FavorisViewController: UIViewController {
             print("no index path")
         }
     }
+    
+    func helpButton() {
+        let button = UIBarButtonItem(title: "ⓘ", style: .plain, target: self, action: #selector(alertHelper))
+        let foregroundColor = UIColor(red: 0/255, green: 122/255, blue: 255/255, alpha: 1)
+        button.setTitleTextAttributes([
+            NSAttributedStringKey.font: UIFont(name: "MarkerFelt-Thin", size: 24.0)!,
+            NSAttributedStringKey.foregroundColor: foregroundColor], for: .normal)
+        navigationItem.rightBarButtonItem = button
+    }
+    
 }
 
 

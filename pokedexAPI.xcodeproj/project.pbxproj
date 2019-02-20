@@ -25,6 +25,7 @@
 		5E79CB9921D627C100007D32 /* HomepageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E79CB9721D627C100007D32 /* HomepageViewController.swift */; };
 		5E79CB9A21D627C100007D32 /* HomepageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E79CB9821D627C100007D32 /* HomepageViewController.xib */; };
 		5EB9F325221DB4A400FF58B0 /* GlobalVar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB9F324221DB4A400FF58B0 /* GlobalVar.swift */; };
+		5EB9F327221DD33700FF58B0 /* song.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5EB9F326221DD33700FF58B0 /* song.mp3 */; };
 		5EDC3576221079EA004BAA14 /* FavCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EDC3574221079EA004BAA14 /* FavCollectionViewCell.swift */; };
 		5EDC3577221079EA004BAA14 /* FavCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EDC3575221079EA004BAA14 /* FavCollectionViewCell.xib */; };
 /* End PBXBuildFile section */
@@ -51,6 +52,7 @@
 		5E79CB9721D627C100007D32 /* HomepageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomepageViewController.swift; sourceTree = "<group>"; };
 		5E79CB9821D627C100007D32 /* HomepageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomepageViewController.xib; sourceTree = "<group>"; };
 		5EB9F324221DB4A400FF58B0 /* GlobalVar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalVar.swift; sourceTree = "<group>"; };
+		5EB9F326221DD33700FF58B0 /* song.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = song.mp3; sourceTree = "<group>"; };
 		5EDC3574221079EA004BAA14 /* FavCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavCollectionViewCell.swift; sourceTree = "<group>"; };
 		5EDC3575221079EA004BAA14 /* FavCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavCollectionViewCell.xib; sourceTree = "<group>"; };
 		9F44E2540065DE89FADDB2EF /* Pods-pokedexAPI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pokedexAPI.release.xcconfig"; path = "Pods/Target Support Files/Pods-pokedexAPI/Pods-pokedexAPI.release.xcconfig"; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 				5EDC3574221079EA004BAA14 /* FavCollectionViewCell.swift */,
 				5EDC3575221079EA004BAA14 /* FavCollectionViewCell.xib */,
 				0CD9AC8C221049200054F623 /* FavorisViewController.xib */,
+				5EB9F326221DD33700FF58B0 /* song.mp3 */,
 			);
 			path = pokedexAPI;
 			sourceTree = "<group>";
@@ -200,6 +203,7 @@
 			files = (
 				0CD9AC8E221049210054F623 /* FavorisViewController.xib in Resources */,
 				5E79CB9A21D627C100007D32 /* HomepageViewController.xib in Resources */,
+				5EB9F327221DD33700FF58B0 /* song.mp3 in Resources */,
 				507DD34F21D14BE70072CE7A /* LaunchScreen.storyboard in Resources */,
 				0CD3D94621EC398A00EB5F9E /* PokeDetailViewController.xib in Resources */,
 				5E06136121EC0AAD006DCC80 /* PokeCollectViewController.xib in Resources */,

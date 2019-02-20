@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import AVFoundation
 
 class PokeDetailViewController: UIViewController {
 
@@ -15,6 +16,8 @@ class PokeDetailViewController: UIViewController {
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var image: UIImageView!
     @IBOutlet var switchShiny: UISwitch!
+    @IBOutlet var weaknessLabel: UILabel!
+    @IBOutlet var strongLabel: UILabel!
     
     @IBOutlet var typeslogo1: UIImageView!
     @IBOutlet var typeslogo2: UIImageView!
@@ -25,6 +28,10 @@ class PokeDetailViewController: UIViewController {
     @IBOutlet var weak3: UIImageView!
     @IBOutlet var weak4: UIImageView!
     
+    @IBOutlet var strong1: UIImageView!
+    @IBOutlet var strong2: UIImageView!
+    @IBOutlet var strong3: UIImageView!
+    @IBOutlet var strong4: UIImageView!
     
     var pokemon: Pokemon!
     var imageShiny: String!
@@ -44,6 +51,7 @@ class PokeDetailViewController: UIViewController {
             self.imageShiny = res
         }
         setupView()
+        displayStrongWeakness()
     }
 
     @IBAction func switchPressure(_ sender: Any) {
@@ -74,10 +82,12 @@ class PokeDetailViewController: UIViewController {
         self.switchShiny.isHidden = false
         self.shinyLabel.isHidden = false
         self.shinyLabel.text = "Normal"
-        self.shinyLabel.backgroundColor = UIColor.red
+        self.shinyLabel.textColor = UIColor.white
     }
     
     func setupView() {
+        weaknessLabel.textColor = UIColor.white
+        strongLabel.textColor = UIColor.white
         let imageURL = URL(string: pokemon.sprite)
         let imageData = try! Data(contentsOf: imageURL!)
         image.image = UIImage(data: imageData)
@@ -104,5 +114,60 @@ class PokeDetailViewController: UIViewController {
         let imageURL = URL(string: self.pokemon.sprite)
         let imageData = try! Data(contentsOf: imageURL!)
         self.image.image = UIImage(data: imageData)
+    }
+    
+    func displayStrongWeakness() {
+        var typeChoice: String!
+        if(self.pokemon.types.count <= 1){
+            typeChoice = self.pokemon.types[0]
+        } else {
+            typeChoice = self.pokemon.types[1]
+        }
+        
+        PokemonServices.default.getTypePokemon(type: typeChoice, completed: { (strong, weak) in
+            switch(strong.count){
+            case 1 : self.strong1.image = UIImage(named : strong[0])
+                break
+            case 2 : self.strong1.image = UIImage(named : strong[0])
+            self.strong2.image = UIImage(named : strong[1])
+                break
+            case 3 : self.strong1.image = UIImage(named : strong[0])
+            self.strong2.image = UIImage(named : strong[1])
+            self.strong3.image = UIImage(named : strong[2])
+                break
+            case 4 : self.strong1.image = UIImage(named : strong[0])
+            self.strong2.image = UIImage(named : strong[1])
+            self.strong3.image = UIImage(named : strong[2])
+            self.strong4.image = UIImage(named : strong[3])
+                break
+            default : self.strong1.image = UIImage(named : strong[0])
+            self.strong2.image = UIImage(named : strong[1])
+            self.strong3.image = UIImage(named : strong[2])
+            self.strong4.image = UIImage(named : strong[3])
+                break
+            }
+            
+            switch(weak.count){
+            case 1 : self.weak1.image = UIImage(named : weak[0])
+                break
+            case 2 : self.weak1.image = UIImage(named : weak[0])
+            self.weak2.image = UIImage(named : weak[1])
+                break
+            case 3 : self.weak1.image = UIImage(named : weak[0])
+            self.weak2.image = UIImage(named : weak[1])
+            self.weak3.image = UIImage(named : weak[2])
+                break
+            case 4 : self.weak1.image = UIImage(named : weak[0])
+            self.weak2.image = UIImage(named : weak[1])
+            self.weak3.image = UIImage(named : weak[2])
+            self.weak4.image = UIImage(named : weak[3])
+                break
+            default : self.weak1.image = UIImage(named : weak[0])
+            self.weak2.image = UIImage(named : weak[1])
+            self.weak3.image = UIImage(named : weak[2])
+            self.weak4.image = UIImage(named : weak[3])
+                break
+            }
+        })
     }
 }

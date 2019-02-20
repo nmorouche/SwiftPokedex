@@ -120,5 +120,40 @@ public class PokemonServices {
             //completion(res.response?.statusCode == 201)
         }
     }
+    public func getTypePokemon(type: String, completed: @escaping ([String], [String]) -> Void) {
+        Alamofire.request("https://pokeapi.co/api/v2/type/\(type)").responseJSON { (res) in
+            var typesWeak : [String] = []
+            var typesStrong : [String] = []
+            guard let jsonPokemon = res.value as? [String:Any],
+                let damageType = jsonPokemon["damage_relations"] as? [String : Any],
+                let doubleDamageTo = damageType["double_damage_to"] as? [[String : Any]],
+                let doubleDamageFrom = damageType["double_damage_from"] as? [[String : Any]] else {
+                    return
+            }
+            
+            var i = 0
+            var j = 0
+            doubleDamageTo.forEach{ x in
+                
+                //types = x["name"] as! [String]
+                guard let type = doubleDamageTo[i]["name"] as? String else {
+                    return
+                }
+                i = i + 1
+                typesStrong.append(type)
+            }
+            doubleDamageFrom.forEach{ y in
+                
+                //types = x["name"] as! [String]
+                guard let type = doubleDamageFrom[j]["name"] as? String else {
+                    return
+                }
+                j = j + 1
+                typesWeak.append(type)
+            }
+            
+            completed(typesStrong, typesWeak)
+        }
+    }
     
 }

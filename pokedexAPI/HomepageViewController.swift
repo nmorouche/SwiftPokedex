@@ -8,13 +8,16 @@
 
 import UIKit
 import Alamofire
+import AVFoundation
 
 class HomepageViewController: UIViewController {
     
     public var pokemons: [Pokemon] = []
+    var player : AVAudioPlayer = AVAudioPlayer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        backgroundSound()
         self.navigationItem.title = "Chargement ..."
         loadingBackground()
         PokemonServices.default.getPokemon(completed: { (res1) in
@@ -48,5 +51,17 @@ class HomepageViewController: UIViewController {
             let next = PokeCollectViewController.newInstance(pokemons: self.pokemons)
             self.navigationController?.pushViewController(next, animated: true)
         }
+    }
+    
+    func backgroundSound() {
+        do{
+            let audioPath = Bundle.main.path(forResource: "song", ofType: "mp3")
+            try player = AVAudioPlayer(contentsOf: NSURL(fileURLWithPath: audioPath!) as URL)
+        }
+        catch {
+            
+        }
+        player.volume = 0.3
+        player.play()
     }
 }
