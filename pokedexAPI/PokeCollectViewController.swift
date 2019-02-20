@@ -121,6 +121,7 @@ extension PokeCollectViewController: UICollectionViewDataSource {
         setupCell(indexPath: indexPath, cell: cell)
         return cell
     }
+    
     func setupCell(indexPath: IndexPath, cell: PokemonCollectionViewCell) {
         let imageURL = URL(string: self.pokemonSearch[indexPath.row].sprite)
         let imageData = try! Data(contentsOf: imageURL!)
@@ -128,9 +129,11 @@ extension PokeCollectViewController: UICollectionViewDataSource {
         cell.title.text = "\(self.pokemonSearch[indexPath.row].name)"
         cell.id.text = "#\(self.pokemonSearch[indexPath.row].id)"
     }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         goToDetails(indexPath: indexPath)
     }
+    
     func goToDetails(indexPath: IndexPath) {
         let idChoosen = self.pokemonSearch[indexPath.row].id
         let nameChoose = self.pokemonSearch[indexPath.row].name

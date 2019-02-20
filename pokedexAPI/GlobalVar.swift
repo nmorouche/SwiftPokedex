@@ -7,3 +7,7 @@
 //
 
 import Foundation
+
+struct GlobalVar {
+    static var check: Bool = true
+}

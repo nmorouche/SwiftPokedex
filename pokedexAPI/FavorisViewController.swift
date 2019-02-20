@@ -10,38 +10,53 @@ import UIKit
 
 class FavorisViewController: UIViewController {
     var pokemons: [Pokemon]!
-    static var check: Bool = true
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        if(check){
-            let alert = UIAlertController(title: "Comment ça marche", message: "Modifier : Appuyez avec deux doigts pour modifier le nom d'un pokémon\n\nSupprimer : Rester appuyez au moins une seconde sur un pokémon afin de le supprimer", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "J'ai compris", style: .default, handler: nil))
-            self.present(alert, animated: true)
-            self.check = false
+        if(GlobalVar.check) {
+            alertInfo()
         }
         setBackground()
-        self.navigationItem.title = "Favoris"
-        self.FavCollectionView.delegate = self
-        self.FavCollectionView.dataSource = self
-        self.FavCollectionView.register(UINib(nibName: "FavCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: FavorisViewController.pokemonCellId)
-        //print(pokemons!)
-        
-        let lpgr = UILongPressGestureRecognizer(target: self, action: #selector(self.handleLongPress(gesture:)))
-        lpgr.minimumPressDuration = 1.0
-        FavCollectionView.addGestureRecognizer(lpgr)
-        
-        let tgr = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(gesture:)))
-        tgr.numberOfTouchesRequired = 2
-        FavCollectionView.addGestureRecognizer(tgr)
-        // Do any additional setup after loading the view.
+        setupBarButton()
+        collectionViewSetup()
+        doubleTap()
+        longPressure()
     }
     
-    public func setBackground(){
+    func setBackground(){
         let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
         backgroundImage.image = UIImage(named: "background")
         backgroundImage.contentMode =  UIViewContentMode.scaleAspectFill
         self.view.insertSubview(backgroundImage, at: 0)
+    }
+    
+    func setupBarButton() {
+        self.navigationItem.title = "Favoris"
+    }
+    
+    func collectionViewSetup() {
+        self.FavCollectionView.delegate = self
+        self.FavCollectionView.dataSource = self
+        self.FavCollectionView.register(UINib(nibName: "FavCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: FavorisViewController.pokemonCellId)
+    }
+    
+    func longPressure() {
+        let lpgr = UILongPressGestureRecognizer(target: self, action: #selector(self.handleLongPress(gesture:)))
+        lpgr.minimumPressDuration = 1.0
+        FavCollectionView.addGestureRecognizer(lpgr)
+    }
+    
+    func doubleTap() {
+        let tgr = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(gesture:)))
+        tgr.numberOfTouchesRequired = 2
+        FavCollectionView.addGestureRecognizer(tgr)
+    }
+    
+    func alertInfo() {
+        let alert = UIAlertController(title: "Comment ça marche", message: "Modifier : Appuyez avec deux doigts pour modifier le nom d'un pokémon\n\nSupprimer : Rester appuyez au moins une seconde sur un pokémon afin de le supprimer", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "J'ai compris", style: .default, handler: nil))
+        self.present(alert, animated: true)
+        GlobalVar.check = false
     }
     
     class func newInstance(pokemon: [Pokemon]) ->
