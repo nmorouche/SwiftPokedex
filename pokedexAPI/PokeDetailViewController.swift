@@ -19,6 +19,12 @@ class PokeDetailViewController: UIViewController {
     @IBOutlet var typeslogo2: UIImageView!
     @IBOutlet var typeslogo3: UIImageView!
     
+    @IBOutlet var weak1: UIImageView!
+    @IBOutlet var weak2: UIImageView!
+    @IBOutlet var weak3: UIImageView!
+    @IBOutlet var weak4: UIImageView!
+    
+    
     var pokemon: Pokemon!
     var imageShiny: String!
     
@@ -30,11 +36,8 @@ class PokeDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setBackground()
         shinyLabel.isHidden = true
-        let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
-        backgroundImage.image = UIImage(named: "background")
-        backgroundImage.contentMode =  UIViewContentMode.scaleAspectFill
-        self.view.insertSubview(backgroundImage, at: 0)
         switchShiny.isEnabled = false
         switchShiny.isHidden = true
         PokemonServices.default.getShiny(id: pokemon.id) { (res) in
@@ -57,10 +60,11 @@ class PokeDetailViewController: UIViewController {
                 break
             default: self.typeslogo2.image = UIImage(named: self.pokemon.types[0])
         }
+        
         image.image = UIImage(data: imageData)
-        name.text = stringtext
+        name.textColor = UIColor.white
+        name.text = "\(pokemon.name)\n#\(pokemon.id)"
         print(stringtext)
-        // Do any additional setup after loading the view.
         switchShiny.isOn = false
     }
 
@@ -77,5 +81,12 @@ class PokeDetailViewController: UIViewController {
             let imageData = try! Data(contentsOf: imageURL!)
             self.image.image = UIImage(data: imageData)
         }
+    }
+    
+    public func setBackground(){
+        let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
+        backgroundImage.image = UIImage(named: "background")
+        backgroundImage.contentMode =  UIViewContentMode.scaleAspectFill
+        self.view.insertSubview(backgroundImage, at: 0)
     }
 }

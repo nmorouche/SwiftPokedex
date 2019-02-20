@@ -10,16 +10,17 @@ import UIKit
 
 class FavorisViewController: UIViewController {
     var pokemons: [Pokemon]!
+    static var check: Bool = true
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let alert = UIAlertController(title: "Comment ça marche", message: "Modifier : Appuyez avec deux doigts pour modifier le nom d'un pokémon\n\nSupprimer : Rester appuyez au moins une seconde sur un pokémon afin de le supprimer", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "J'ai compris", style: .default, handler: nil))
-        self.present(alert, animated: true)
-        let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
-        backgroundImage.image = UIImage(named: "background")
-        backgroundImage.contentMode =  UIViewContentMode.scaleAspectFill
-        self.view.insertSubview(backgroundImage, at: 0)
+        if(check){
+            let alert = UIAlertController(title: "Comment ça marche", message: "Modifier : Appuyez avec deux doigts pour modifier le nom d'un pokémon\n\nSupprimer : Rester appuyez au moins une seconde sur un pokémon afin de le supprimer", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "J'ai compris", style: .default, handler: nil))
+            self.present(alert, animated: true)
+            self.check = false
+        }
+        setBackground()
         self.navigationItem.title = "Favoris"
         self.FavCollectionView.delegate = self
         self.FavCollectionView.dataSource = self
@@ -34,6 +35,13 @@ class FavorisViewController: UIViewController {
         tgr.numberOfTouchesRequired = 2
         FavCollectionView.addGestureRecognizer(tgr)
         // Do any additional setup after loading the view.
+    }
+    
+    public func setBackground(){
+        let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
+        backgroundImage.image = UIImage(named: "background")
+        backgroundImage.contentMode =  UIViewContentMode.scaleAspectFill
+        self.view.insertSubview(backgroundImage, at: 0)
     }
     
     class func newInstance(pokemon: [Pokemon]) ->

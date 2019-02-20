@@ -75,6 +75,23 @@ public class PokemonServices {
         }
     }
     
+    public func findAll(completed: @escaping ([Pokemon]) -> Void) {
+        
+        Alamofire.request("https://pacific-sierra-64951.herokuapp.com/show/all").responseJSON { (res) in
+            guard let m = res.value as? [[String: Any]] else {
+                return
+            }
+            let pokemons = m.compactMap({ (elem) -> Pokemon? in
+                return Pokemon(json: elem)
+            })
+            completed(pokemons)
+        }
+    }
+    public func delete(id: Int) {
+        Alamofire.request("https://pacific-sierra-64951.herokuapp.com/delete/\(id)", method: .delete).response { (res) in
+            //completion(res.response?.statusCode == 201)
+        }
+    }
     public func add(pokemon: Pokemon) {
         
         let params = [
@@ -89,26 +106,6 @@ public class PokemonServices {
             //completion(res.response?.statusCode == 201)
         }
     }
-    
-    public func findAll(completed: @escaping ([Pokemon]) -> Void) {
-        
-        Alamofire.request("https://pacific-sierra-64951.herokuapp.com/show/all").responseJSON { (res) in
-            guard let m = res.value as? [[String: Any]] else {
-                return
-            }
-            let pokemons = m.compactMap({ (elem) -> Pokemon? in
-                return Pokemon(json: elem)
-            })
-            completed(pokemons)
-        }
-    }
-    
-    public func delete(id: Int) {
-        Alamofire.request("https://pacific-sierra-64951.herokuapp.com/delete/\(id)", method: .delete).response { (res) in
-            //completion(res.response?.statusCode == 201)
-        }
-    }
-    
     public func update(pokemon: Pokemon) {
         
         let params = [
@@ -123,4 +120,5 @@ public class PokemonServices {
             //completion(res.response?.statusCode == 201)
         }
     }
+    
 }
