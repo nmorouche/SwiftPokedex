@@ -130,25 +130,20 @@ public class PokemonServices {
                 let doubleDamageFrom = damageType["double_damage_from"] as? [[String : Any]] else {
                     return
             }
-            
-            var i = 0
-            var j = 0
-            doubleDamageTo.forEach{ x in
+            doubleDamageTo.forEach{ doubledamageto in
                 
                 //types = x["name"] as! [String]
-                guard let type = doubleDamageTo[i]["name"] as? String else {
+                guard let type = doubledamageto["name"] as? String else {
                     return
                 }
-                i = i + 1
                 typesStrong.append(type)
             }
-            doubleDamageFrom.forEach{ y in
+            doubleDamageFrom.forEach{ doubledamagefrom in
                 
                 //types = x["name"] as! [String]
-                guard let type = doubleDamageFrom[j]["name"] as? String else {
+                guard let type = doubledamagefrom["name"] as? String else {
                     return
                 }
-                j = j + 1
                 typesWeak.append(type)
             }
             
