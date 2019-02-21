@@ -107,7 +107,6 @@
 				5E06135921EBA915006DCC80 /* Services */,
 				5E59E657221ECBA600E92417 /* Model */,
 				5E59E658221ECBBA00E92417 /* Views */,
-				5E59E65C221ECC8700E92417 /* Details */,
 				507DD34321D14BE60072CE7A /* pokedexAPI */,
 				507DD34221D14BE60072CE7A /* Products */,
 				7E13181B0BA2BDDAA369EC17 /* Pods */,
@@ -159,6 +158,7 @@
 			children = (
 				5E59E65B221ECC7B00E92417 /* LoadingView */,
 				5E59E659221ECBC300E92417 /* CollectionsViews */,
+				5E59E65C221ECC8700E92417 /* Details */,
 			);
 			path = Views;
 			sourceTree = "<group>";
