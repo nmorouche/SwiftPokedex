@@ -99,7 +99,13 @@
 		507DD33821D14BE60072CE7A = {
 			isa = PBXGroup;
 			children = (
+				507DD34421D14BE60072CE7A /* AppDelegate.swift */,
+				507DD34621D14BE60072CE7A /* ViewController.swift */,
+				507DD34D21D14BE70072CE7A /* LaunchScreen.storyboard */,
 				5E06135921EBA915006DCC80 /* Services */,
+				5E59E657221ECBA600E92417 /* Model */,
+				5E59E658221ECBBA00E92417 /* Views */,
+				5E59E65C221ECC8700E92417 /* Details */,
 				507DD34321D14BE60072CE7A /* pokedexAPI */,
 				507DD34221D14BE60072CE7A /* Products */,
 				7E13181B0BA2BDDAA369EC17 /* Pods */,
@@ -118,25 +124,8 @@
 		507DD34321D14BE60072CE7A /* pokedexAPI */ = {
 			isa = PBXGroup;
 			children = (
-				507DD34421D14BE60072CE7A /* AppDelegate.swift */,
-				507DD34621D14BE60072CE7A /* ViewController.swift */,
-				5EB9F324221DB4A400FF58B0 /* GlobalVar.swift */,
-				5E79CB9721D627C100007D32 /* HomepageViewController.swift */,
-				5E06135E21EC0AAD006DCC80 /* PokeCollectViewController.swift */,
-				5E06136221EC0B2F006DCC80 /* PokemonCollectionViewCell.swift */,
-				5E06136321EC0B2F006DCC80 /* PokemonCollectionViewCell.xib */,
-				5E06135F21EC0AAD006DCC80 /* PokeCollectViewController.xib */,
-				5E79CB9821D627C100007D32 /* HomepageViewController.xib */,
-				5E22840021D7D335000F2F6E /* Pokemon.swift */,
 				507DD34B21D14BE70072CE7A /* Assets.xcassets */,
-				507DD34D21D14BE70072CE7A /* LaunchScreen.storyboard */,
 				507DD35021D14BE70072CE7A /* Info.plist */,
-				0CD3D94321EC398A00EB5F9E /* PokeDetailViewController.swift */,
-				0CD3D94421EC398A00EB5F9E /* PokeDetailViewController.xib */,
-				0CD9AC8B221049200054F623 /* FavorisViewController.swift */,
-				5EDC3574221079EA004BAA14 /* FavCollectionViewCell.swift */,
-				5EDC3575221079EA004BAA14 /* FavCollectionViewCell.xib */,
-				0CD9AC8C221049200054F623 /* FavorisViewController.xib */,
 				5EE58A40221E083B00A05E54 /* selectsound.mp3 */,
 				5E244D29221E1F4000753C95 /* pokecenter.mp3 */,
 				5EB9F326221DD33700FF58B0 /* song.mp3 */,
@@ -152,6 +141,65 @@
 				5E06135A21EBA928006DCC80 /* PokemonServices.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		5E59E657221ECBA600E92417 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5EB9F324221DB4A400FF58B0 /* GlobalVar.swift */,
+				5E22840021D7D335000F2F6E /* Pokemon.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		5E59E658221ECBBA00E92417 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5E59E65B221ECC7B00E92417 /* LoadingView */,
+				5E59E659221ECBC300E92417 /* CollectionsViews */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5E59E659221ECBC300E92417 /* CollectionsViews */ = {
+			isa = PBXGroup;
+			children = (
+				5E59E65A221ECC1800E92417 /* ViewCells */,
+				5E06135E21EC0AAD006DCC80 /* PokeCollectViewController.swift */,
+				5E06135F21EC0AAD006DCC80 /* PokeCollectViewController.xib */,
+				0CD9AC8B221049200054F623 /* FavorisViewController.swift */,
+				0CD9AC8C221049200054F623 /* FavorisViewController.xib */,
+			);
+			path = CollectionsViews;
+			sourceTree = "<group>";
+		};
+		5E59E65A221ECC1800E92417 /* ViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				5E06136221EC0B2F006DCC80 /* PokemonCollectionViewCell.swift */,
+				5E06136321EC0B2F006DCC80 /* PokemonCollectionViewCell.xib */,
+				5EDC3574221079EA004BAA14 /* FavCollectionViewCell.swift */,
+				5EDC3575221079EA004BAA14 /* FavCollectionViewCell.xib */,
+			);
+			path = ViewCells;
+			sourceTree = "<group>";
+		};
+		5E59E65B221ECC7B00E92417 /* LoadingView */ = {
+			isa = PBXGroup;
+			children = (
+				5E79CB9721D627C100007D32 /* HomepageViewController.swift */,
+				5E79CB9821D627C100007D32 /* HomepageViewController.xib */,
+			);
+			path = LoadingView;
+			sourceTree = "<group>";
+		};
+		5E59E65C221ECC8700E92417 /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				0CD3D94321EC398A00EB5F9E /* PokeDetailViewController.swift */,
+				0CD3D94421EC398A00EB5F9E /* PokeDetailViewController.xib */,
+			);
+			path = Details;
 			sourceTree = "<group>";
 		};
 		5E7A447A221E141E009AEC38 /* PokemonCries */ = {
