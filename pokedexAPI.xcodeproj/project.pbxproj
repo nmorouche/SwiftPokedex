@@ -24,6 +24,7 @@
 		5E22840121D7D335000F2F6E /* Pokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E22840021D7D335000F2F6E /* Pokemon.swift */; };
 		5E244D28221E1A2F00753C95 /* song2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5E244D27221E1A2F00753C95 /* song2.mp3 */; };
 		5E244D2A221E1F4000753C95 /* pokecenter.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5E244D29221E1F4000753C95 /* pokecenter.mp3 */; };
+		5E59E65E221EF49600E92417 /* Pikachu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5E59E65D221EF49600E92417 /* Pikachu.mp3 */; };
 		5E79CB9921D627C100007D32 /* HomepageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E79CB9721D627C100007D32 /* HomepageViewController.swift */; };
 		5E79CB9A21D627C100007D32 /* HomepageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E79CB9821D627C100007D32 /* HomepageViewController.xib */; };
 		5E7A4488221E141E009AEC38 /* Florizarre.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5E7A447B221E141E009AEC38 /* Florizarre.mp3 */; };
@@ -64,6 +65,7 @@
 		5E22840021D7D335000F2F6E /* Pokemon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pokemon.swift; sourceTree = "<group>"; };
 		5E244D27221E1A2F00753C95 /* song2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = song2.mp3; sourceTree = "<group>"; };
 		5E244D29221E1F4000753C95 /* pokecenter.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = pokecenter.mp3; sourceTree = "<group>"; };
+		5E59E65D221EF49600E92417 /* Pikachu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Pikachu.mp3; sourceTree = "<group>"; };
 		5E79CB9721D627C100007D32 /* HomepageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomepageViewController.swift; sourceTree = "<group>"; };
 		5E79CB9821D627C100007D32 /* HomepageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomepageViewController.xib; sourceTree = "<group>"; };
 		5E7A447B221E141E009AEC38 /* Florizarre.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Florizarre.mp3; sourceTree = "<group>"; };
@@ -205,6 +207,7 @@
 		5E7A447A221E141E009AEC38 /* PokemonCries */ = {
 			isa = PBXGroup;
 			children = (
+				5E59E65D221EF49600E92417 /* Pikachu.mp3 */,
 				5E7A447B221E141E009AEC38 /* Florizarre.mp3 */,
 				5E7A447C221E141E009AEC38 /* Salamèche.mp3 */,
 				5E7A447F221E141E009AEC38 /* Dracaufeu.mp3 */,
@@ -302,6 +305,7 @@
 				5EB9F327221DD33700FF58B0 /* song.mp3 in Resources */,
 				5E244D28221E1A2F00753C95 /* song2.mp3 in Resources */,
 				507DD34F21D14BE70072CE7A /* LaunchScreen.storyboard in Resources */,
+				5E59E65E221EF49600E92417 /* Pikachu.mp3 in Resources */,
 				5E7A4494221E141E009AEC38 /* Reptincel.mp3 in Resources */,
 				0CD3D94621EC398A00EB5F9E /* PokeDetailViewController.xib in Resources */,
 				5E7A4492221E141E009AEC38 /* Tortank.mp3 in Resources */,

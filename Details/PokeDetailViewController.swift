@@ -198,6 +198,18 @@ class PokeDetailViewController: UIViewController {
         player.volume = 0.7
         player.play()
     }
+
+    func selectSoundDefault() {
+        do{
+            let audioPath = Bundle.main.path(forResource: "Pikachu", ofType: "mp3")
+            try player = AVAudioPlayer(contentsOf: NSURL(fileURLWithPath: audioPath!) as URL)
+        }
+        catch {
+            
+        }
+        player.volume = 0.7
+        player.play()
+    }
     
     func clickImage() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
@@ -207,8 +219,13 @@ class PokeDetailViewController: UIViewController {
     
     @objc func imageTapped(gesture: UIGestureRecognizer) {
         // if the tapped view is a UIImageView then set it to imageview
-        if let image = gesture.view as? UIImageView {
-            selectPokemonSound()
+        if (gesture.view as? UIImageView) != nil {
+            if pokemon.id <= 9 {
+                selectPokemonSound()
+            }
+            else {
+                selectSoundDefault()
+            }
             //Here you can initiate your new ViewController
             
         }

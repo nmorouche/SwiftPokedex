@@ -50,8 +50,9 @@ class PokeCollectViewController: UIViewController {
     
     func setupBarButton() {
         self.navigationItem.title = "Pokédex"
-        let backButton = UIBarButtonItem(title: "", style: .plain, target: navigationController, action: nil)
-        navigationItem.leftBarButtonItem = backButton
+        self.navigationItem.hidesBackButton = true
+        /*let backButton = UIBarButtonItem(title: "", style: .plain, target: navigationController, action: nil)
+        navigationItem.leftBarButtonItem = backButton*/
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Favoris", style: .plain, target: self, action: #selector(Favoris))
     }
     
