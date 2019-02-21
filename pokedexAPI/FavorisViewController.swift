@@ -89,6 +89,7 @@ class FavorisViewController: UIViewController {
                     PokemonServices.default.update(pokemon: Pokemon(id: self.pokemons[indexPath.row].id, name: addText.text!, sprite: self.pokemons[indexPath.row].sprite, types: self.pokemons[indexPath.row].types))
                 }
                 self.pokemons[indexPath.row].name = addText.text!
+                self.updatePokemonSound()
                 self.FavCollectionView.reloadData()
             })
             let cancel = UIAlertAction(title: "Non", style: .default, handler: { (action) -> Void in
@@ -138,6 +139,30 @@ class FavorisViewController: UIViewController {
         navigationItem.rightBarButtonItem = button
     }
     
+    func selectSound() {
+        do{
+            let audioPath = Bundle.main.path(forResource: "selectsound", ofType: "mp3")
+            try player = AVAudioPlayer(contentsOf: NSURL(fileURLWithPath: audioPath!) as URL)
+        }
+        catch {
+            
+        }
+        player.volume = 0.7
+        player.play()
+    }
+    
+    func updatePokemonSound() {
+        do{
+            let audioPath = Bundle.main.path(forResource: "pokecenter", ofType: "mp3")
+            try player = AVAudioPlayer(contentsOf: NSURL(fileURLWithPath: audioPath!) as URL)
+        }
+        catch {
+            player.stop()
+        }
+        player.volume = 0.7
+        player.play()
+    }
+    
 }
 
 
@@ -168,7 +193,7 @@ extension FavorisViewController: UICollectionViewDataSource {
         let nameChoose = self.pokemons[indexPath.row].name
         let imageChoosen = self.pokemons[indexPath.row].sprite
         let typesChoosen = self.pokemons[indexPath.row].types
-        
+        selectSound()
         let next = PokeDetailViewController.newInstance(pokemon: Pokemon(id: idChoosen, name: nameChoose, sprite: imageChoosen, types: typesChoosen))
         self.navigationController?.pushViewController(next, animated: true)
         

@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import AVFoundation
+var player : AVAudioPlayer = AVAudioPlayer()
 
 class PokeCollectViewController: UIViewController {
     
@@ -89,6 +90,17 @@ class PokeCollectViewController: UIViewController {
         }
     }
     
+    func selectSound() {
+        do{
+            let audioPath = Bundle.main.path(forResource: "selectsound", ofType: "mp3")
+            try player = AVAudioPlayer(contentsOf: NSURL(fileURLWithPath: audioPath!) as URL)
+        }
+        catch {
+            
+        }
+        player.volume = 0.7
+        player.play()
+    }
 }
 
 extension PokeCollectViewController: UISearchBarDelegate {
@@ -140,6 +152,7 @@ extension PokeCollectViewController: UICollectionViewDataSource {
         let nameChoose = self.pokemonSearch[indexPath.row].name
         let imageChoosen = self.pokemonSearch[indexPath.row].sprite
         let typesChoosen = self.pokemonSearch[indexPath.row].types
+        selectSound()
         let next = PokeDetailViewController.newInstance(pokemon: Pokemon(id: idChoosen, name: nameChoose, sprite: imageChoosen, types: typesChoosen))
         self.navigationController?.pushViewController(next, animated: true)
     }

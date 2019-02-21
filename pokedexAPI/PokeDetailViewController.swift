@@ -12,6 +12,7 @@ import AVFoundation
 
 class PokeDetailViewController: UIViewController {
 
+    var player : AVAudioPlayer = AVAudioPlayer()
     @IBOutlet var shinyLabel: UILabel!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var image: UIImageView!
@@ -52,6 +53,7 @@ class PokeDetailViewController: UIViewController {
         }
         setupView()
         displayStrongWeakness()
+        clickImage()
     }
 
     @IBAction func switchPressure(_ sender: Any) {
@@ -107,6 +109,7 @@ class PokeDetailViewController: UIViewController {
         let imageURL = URL(string: self.imageShiny)
         let imageData = try! Data(contentsOf: imageURL!)
         self.image.image = UIImage(data: imageData)
+        selectSound()
     }
     
     func toNormal() {
@@ -114,6 +117,7 @@ class PokeDetailViewController: UIViewController {
         let imageURL = URL(string: self.pokemon.sprite)
         let imageData = try! Data(contentsOf: imageURL!)
         self.image.image = UIImage(data: imageData)
+        selectSound()
     }
     
     func displayStrongWeakness() {
@@ -169,5 +173,44 @@ class PokeDetailViewController: UIViewController {
                 break
             }
         })
+    }
+    
+    func selectSound() {
+        do{
+            let audioPath = Bundle.main.path(forResource: "selectsound", ofType: "mp3")
+            try player = AVAudioPlayer(contentsOf: NSURL(fileURLWithPath: audioPath!) as URL)
+        }
+        catch {
+            
+        }
+        player.volume = 0.7
+        player.play()
+    }
+    
+    func selectPokemonSound() {
+        do{
+            let audioPath = Bundle.main.path(forResource: pokemon.name, ofType: "mp3")
+            try player = AVAudioPlayer(contentsOf: NSURL(fileURLWithPath: audioPath!) as URL)
+        }
+        catch {
+            
+        }
+        player.volume = 0.7
+        player.play()
+    }
+    
+    func clickImage() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
+        image.addGestureRecognizer(tapGesture)
+        image.isUserInteractionEnabled = true
+    }
+    
+    @objc func imageTapped(gesture: UIGestureRecognizer) {
+        // if the tapped view is a UIImageView then set it to imageview
+        if let image = gesture.view as? UIImageView {
+            selectPokemonSound()
+            //Here you can initiate your new ViewController
+            
+        }
     }
 }

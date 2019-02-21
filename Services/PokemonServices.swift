@@ -150,5 +150,18 @@ public class PokemonServices {
             completed(typesStrong, typesWeak)
         }
     }
-    
+    public func getEvolutionChain(pokemonid: Int, completed: @escaping ([String],[String]) -> Void) {
+        Alamofire.request("https://pokeapi.co/api/v2/pokemon/\(pokemonid)/").responseJSON { (res) in
+            guard let jsonPokemon = res.value as? [String:Any],
+                let imageJson = jsonPokemon["sprites"] as? [String:Any],
+                let image = imageJson["front_shiny"] as? String else {
+                    return
+            }
+            var x: [String]!
+            x.append("test")
+            var y: [String]!
+            y.append("tset")
+            completed(x,y)
+        }
+    }
 }

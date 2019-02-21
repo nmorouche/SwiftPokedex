@@ -17,7 +17,7 @@ class HomepageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        backgroundSound()
+        backgroundSound(filename: "song")
         self.navigationItem.title = "Chargement ..."
         loadingBackground()
         PokemonServices.default.getPokemon(completed: { (res1) in
@@ -53,15 +53,25 @@ class HomepageViewController: UIViewController {
         }
     }
     
-    func backgroundSound() {
+    func backgroundSound(filename: String) {
         do{
-            let audioPath = Bundle.main.path(forResource: "song", ofType: "mp3")
+            let audioPath = Bundle.main.path(forResource: filename, ofType: "mp3")
             try player = AVAudioPlayer(contentsOf: NSURL(fileURLWithPath: audioPath!) as URL)
+            player.delegate = self
         }
         catch {
-            
+            player.stop()
         }
         player.volume = 0.3
         player.play()
+    }
+}
+
+extension HomepageViewController: AVAudioPlayerDelegate {
+    
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool){
+        if (flag == true){
+            backgroundSound(filename: "song2")
+        }
     }
 }
