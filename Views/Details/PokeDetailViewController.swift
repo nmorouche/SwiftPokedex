@@ -189,7 +189,7 @@ class PokeDetailViewController: UIViewController {
     
     func selectPokemonSound() {
         do{
-            let audioPath = Bundle.main.path(forResource: pokemon.name, ofType: "mp3")
+            let audioPath = Bundle.main.path(forResource: "\(pokemon.id)", ofType: "mp3")
             try player = AVAudioPlayer(contentsOf: NSURL(fileURLWithPath: audioPath!) as URL)
         }
         catch {
@@ -201,7 +201,7 @@ class PokeDetailViewController: UIViewController {
 
     func selectSoundDefault() {
         do{
-            let audioPath = Bundle.main.path(forResource: "Pikachu", ofType: "mp3")
+            let audioPath = Bundle.main.path(forResource: "default", ofType: "mp3")
             try player = AVAudioPlayer(contentsOf: NSURL(fileURLWithPath: audioPath!) as URL)
         }
         catch {
