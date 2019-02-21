@@ -9,20 +9,15 @@
 import UIKit
 import Alamofire
 import AVFoundation
-var player : AVAudioPlayer = AVAudioPlayer()
 
 class PokeCollectViewController: UIViewController {
     
-    @IBOutlet var searchbar: UISearchBar!
-    @IBOutlet weak var collectionView: UICollectionView!
+    var player : AVAudioPlayer = AVAudioPlayer()
     var pokemons : [Pokemon]!
     var pokemonSearch : [Pokemon]!
     
-    class func newInstance(pokemons: [Pokemon]) -> PokeCollectViewController {
-        let pcvc = PokeCollectViewController()
-        pcvc.pokemons = pokemons
-        return pcvc
-    }
+    @IBOutlet var searchbar: UISearchBar!
+    @IBOutlet weak var collectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -101,6 +96,12 @@ class PokeCollectViewController: UIViewController {
         }
         player.volume = 0.7
         player.play()
+    }
+    
+    class func newInstance(pokemons: [Pokemon]) -> PokeCollectViewController {
+        let pcvc = PokeCollectViewController()
+        pcvc.pokemons = pokemons
+        return pcvc
     }
 }
 
