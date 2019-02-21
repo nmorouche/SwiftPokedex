@@ -80,9 +80,11 @@ class PokeCollectViewController: UIViewController {
     }
     
     @objc private func Favoris() {
+        self.navigationItem.rightBarButtonItem?.isEnabled = false
         PokemonServices.default.findAll { (pokemons) in
             let favPage = FavorisViewController.newInstance(pokemon: pokemons)
             self.navigationController?.pushViewController(favPage, animated: true)
+            self.navigationItem.rightBarButtonItem?.isEnabled = true
         }
     }
     

@@ -14,8 +14,8 @@ class PokeDetailViewController: UIViewController {
 
     var player : AVAudioPlayer = AVAudioPlayer()
     @IBOutlet var shinyLabel: UILabel!
-    @IBOutlet weak var name: UILabel!
-    @IBOutlet weak var image: UIImageView!
+    @IBOutlet var name: UILabel!
+    @IBOutlet var image: UIImageView!
     @IBOutlet var switchShiny: UISwitch!
     @IBOutlet var weaknessLabel: UILabel!
     @IBOutlet var strongLabel: UILabel!
@@ -129,50 +129,70 @@ class PokeDetailViewController: UIViewController {
         }
         
         PokemonServices.default.getTypePokemon(type: typeChoice, completed: { (strong, weak) in
-            switch(strong.count){
-            case 1 : self.strong1.image = UIImage(named : strong[0])
+            var newWeak = self.clear(types: weak)
+            var newStrong = self.clear(types: strong)
+            switch(newStrong.count){
+            case 1 : self.strong1.image = UIImage(named : newStrong[0])
                 break
-            case 2 : self.strong1.image = UIImage(named : strong[0])
-            self.strong2.image = UIImage(named : strong[1])
+            case 2 : self.strong1.image = UIImage(named : newStrong[0])
+            self.strong2.image = UIImage(named : newStrong[1])
                 break
-            case 3 : self.strong1.image = UIImage(named : strong[0])
-            self.strong2.image = UIImage(named : strong[1])
-            self.strong3.image = UIImage(named : strong[2])
+            case 3 : self.strong1.image = UIImage(named : newStrong[0])
+            self.strong2.image = UIImage(named : newStrong[1])
+            self.strong3.image = UIImage(named : newStrong[2])
                 break
-            case 4 : self.strong1.image = UIImage(named : strong[0])
-            self.strong2.image = UIImage(named : strong[1])
-            self.strong3.image = UIImage(named : strong[2])
-            self.strong4.image = UIImage(named : strong[3])
+            case 4 : self.strong1.image = UIImage(named : newStrong[0])
+            self.strong2.image = UIImage(named : newStrong[1])
+            self.strong3.image = UIImage(named : newStrong[2])
+            self.strong4.image = UIImage(named : newStrong[3])
                 break
-            default : self.strong1.image = UIImage(named : strong[0])
-            self.strong2.image = UIImage(named : strong[1])
-            self.strong3.image = UIImage(named : strong[2])
-            self.strong4.image = UIImage(named : strong[3])
+            default : self.strong1.image = UIImage(named : newStrong[0])
+            self.strong2.image = UIImage(named : newStrong[1])
+            self.strong3.image = UIImage(named : newStrong[2])
+            self.strong4.image = UIImage(named : newStrong[3])
                 break
             }
             
-            switch(weak.count){
-            case 1 : self.weak1.image = UIImage(named : weak[0])
+            switch(newWeak.count){
+            case 1 : self.weak1.image = UIImage(named : newWeak[0])
                 break
-            case 2 : self.weak1.image = UIImage(named : weak[0])
-            self.weak2.image = UIImage(named : weak[1])
+            case 2 : self.weak1.image = UIImage(named : newWeak[0])
+            self.weak2.image = UIImage(named : newWeak[1])
                 break
-            case 3 : self.weak1.image = UIImage(named : weak[0])
-            self.weak2.image = UIImage(named : weak[1])
-            self.weak3.image = UIImage(named : weak[2])
+            case 3 : self.weak1.image = UIImage(named : newWeak[0])
+            self.weak2.image = UIImage(named : newWeak[1])
+            self.weak3.image = UIImage(named : newWeak[2])
                 break
-            case 4 : self.weak1.image = UIImage(named : weak[0])
-            self.weak2.image = UIImage(named : weak[1])
-            self.weak3.image = UIImage(named : weak[2])
-            self.weak4.image = UIImage(named : weak[3])
+            case 4 : self.weak1.image = UIImage(named : newWeak[0])
+            self.weak2.image = UIImage(named : newWeak[1])
+            self.weak3.image = UIImage(named : newWeak[2])
+            self.weak4.image = UIImage(named : newWeak[3])
                 break
-            default : self.weak1.image = UIImage(named : weak[0])
-            self.weak2.image = UIImage(named : weak[1])
-            self.weak3.image = UIImage(named : weak[2])
+            default : self.weak1.image = UIImage(named : newWeak[0])
+            self.weak2.image = UIImage(named : newWeak[1])
+            self.weak3.image = UIImage(named : newWeak[2])
             self.weak4.image = UIImage(named : weak[3])
                 break
             }
         })
+    }
+    
+    func clear(types: [String]) -> [String] {
+        var newType = types
+        var i = 0
+        newType.forEach{ type in
+            if type == self.pokemon.types[0] {
+                switch(type) {
+                case "dragon" :
+                    break
+                case "ghost" :
+                    break
+                default: newType.remove(at: i)
+                }
+            }
+            i += 1
+        }
+        return newType
     }
     
     func selectSound() {
