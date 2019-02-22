@@ -150,18 +150,56 @@ public class PokemonServices {
             completed(typesStrong, typesWeak)
         }
     }
-    public func getEvolutionChain(pokemonid: Int, completed: @escaping ([String],[String]) -> Void) {
-        Alamofire.request("https://pokeapi.co/api/v2/pokemon/\(pokemonid)/").responseJSON { (res) in
-            guard let jsonPokemon = res.value as? [String:Any],
-                let imageJson = jsonPokemon["sprites"] as? [String:Any],
-                let image = imageJson["front_shiny"] as? String else {
+    
+    public func getEvolutionChain(url: String, completed: @escaping (String, String, String) -> Void) {
+        var evoOne = ""
+        var evoTwo = ""
+        var evoThree = ""
+        Alamofire.request(url).responseJSON { (res) in
+            guard let jsonEvolution = res.value as? [String:Any],
+                let evolution = jsonEvolution["chain"] as? [String:Any],
+                let evolveTo = evolution["evolves_to"] as? [[String:Any]] else {
                     return
             }
-            var x: [String]!
-            x.append("test")
-            var y: [String]!
-            y.append("tset")
-            completed(x,y)
+            if(evolveTo.count != 0){
+                guard let evolveOne = evolveTo[0]["evolves_to"] as? [[String:Any]] else {
+                    return
+                }
+                if(evolveOne.count != 0){
+                    guard let evolveOneName = evolveOne[0]["species"] as? [String:Any],
+                        let evolutionOne = evolveOneName["name"] as? String else {
+                            return
+                    }
+                    evoOne = evolutionOne
+                }
+                guard let evolveTwo = evolveTo[0]["species"] as? [String:Any],
+                    let evolutionTwo = evolveTwo["name"] as? String else {
+                        return
+                }
+                evoTwo = evolutionTwo
+            }
+            
+            guard let evolveThree = evolution["species"] as? [String:Any],
+                let evolutionThree = evolveThree["name"] as? String else {
+                    return
+            }
+            evoThree = evolutionThree
+            completed(evoOne, evoTwo, evoThree)
         }
     }
+    
+    public func getPokemonSpecies(pokemonId: Int, completed: @escaping (String) -> Void) {
+        Alamofire.request("https://pokeapi.co/api/v2/pokemon-species/\(pokemonId)/").responseJSON { (res) in
+            guard let jsonEvolution = res.value as? [String:Any],
+                let evolution = jsonEvolution["evolution_chain"] as? [String:Any],
+                let evolutionChain = evolution["url"] as? String else {
+                    return
+            }
+            completed(evolutionChain)
+        }
+    }
+    
+    
+    
+    
 }

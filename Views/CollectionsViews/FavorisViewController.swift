@@ -195,7 +195,7 @@ extension FavorisViewController: UICollectionViewDataSource {
         let imageChoosen = self.pokemons[indexPath.row].sprite
         let typesChoosen = self.pokemons[indexPath.row].types
         selectSound()
-        let next = PokeDetailViewController.newInstance(pokemon: Pokemon(id: idChoosen, name: nameChoose, sprite: imageChoosen, types: typesChoosen))
+        let next = PokeDetailViewController.newInstance(pokemon: Pokemon(id: idChoosen, name: nameChoose, sprite: imageChoosen, types: typesChoosen), evolution: 0)
         self.navigationController?.pushViewController(next, animated: true)
         
     }

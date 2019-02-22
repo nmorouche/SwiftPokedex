@@ -13,6 +13,7 @@ import AVFoundation
 class PokeDetailViewController: UIViewController {
 
     var player : AVAudioPlayer = AVAudioPlayer()
+    var pokemons: [Pokemon] = []
     @IBOutlet var shinyLabel: UILabel!
     @IBOutlet var name: UILabel!
     @IBOutlet var image: UIImageView!
@@ -35,11 +36,13 @@ class PokeDetailViewController: UIViewController {
     @IBOutlet var strong4: UIImageView!
     
     var pokemon: Pokemon!
+    var evolution: Int!
     var imageShiny: String!
     
-    class func newInstance(pokemon: Pokemon) -> PokeDetailViewController {
+    class func newInstance(pokemon: Pokemon, evolution: Int) -> PokeDetailViewController {
         let pdvc = PokeDetailViewController()
         pdvc.pokemon = pokemon
+        pdvc.evolution = evolution
         return pdvc
     }
     
@@ -73,6 +76,9 @@ class PokeDetailViewController: UIViewController {
     }
     
     func setupButtonsAtStart() {
+        if evolution == 0 {
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Evolution", style: .plain, target: self, action: #selector(pushEvolution))
+        }
         shinyLabel.isHidden = true
         switchShiny.isEnabled = false
         switchShiny.isHidden = true
@@ -132,6 +138,8 @@ class PokeDetailViewController: UIViewController {
             var newWeak = self.clear(types: weak)
             var newStrong = self.clear(types: strong)
             switch(newStrong.count){
+            case 0:
+                break
             case 1 : self.strong1.image = UIImage(named : newStrong[0])
                 break
             case 2 : self.strong1.image = UIImage(named : newStrong[0])
@@ -154,6 +162,8 @@ class PokeDetailViewController: UIViewController {
             }
             
             switch(newWeak.count){
+            case 0:
+                break
             case 1 : self.weak1.image = UIImage(named : newWeak[0])
                 break
             case 2 : self.weak1.image = UIImage(named : newWeak[0])
@@ -238,7 +248,6 @@ class PokeDetailViewController: UIViewController {
     }
     
     @objc func imageTapped(gesture: UIGestureRecognizer) {
-        // if the tapped view is a UIImageView then set it to imageview
         if (gesture.view as? UIImageView) != nil {
             if pokemon.id <= 9 {
                 selectPokemonSound()
@@ -246,8 +255,49 @@ class PokeDetailViewController: UIViewController {
             else {
                 selectSoundDefault()
             }
-            //Here you can initiate your new ViewController
-            
         }
+    }
+    
+    func getEvolutionChain() {
+        PokemonServices.default.getPokemonSpecies(pokemonId: self.pokemon.id, completed: {(url) in
+            PokemonServices.default.getEvolutionChain(url: url, completed: {(one, two, three) in
+                var tabPoke : [String] = []
+                var pokemons: [Pokemon] = []
+                if(one != ""){
+                    tabPoke.append(("https://pokeapi.co/api/v2/pokemon/\(one)/"))
+                }
+                if(two != ""){
+                    tabPoke.append(("https://pokeapi.co/api/v2/pokemon/\(two)/"))
+                }
+                if(three != ""){
+                    tabPoke.append(("https://pokeapi.co/api/v2/pokemon/\(three)/"))
+                }
+                
+                tabPoke.forEach { res in
+                    PokemonServices.default.getSoloPokemon(url: res, completed: { (id, image, urlFR, types) in
+                        PokemonServices.default.getSoloPokemonDetails(urlFR: urlFR, completed: { (pokemonname) in
+                            let newPokemon = Pokemon(id: id, name: pokemonname, sprite: image, types: types)
+                            pokemons.append(newPokemon)
+                            if(pokemons.count == tabPoke.count){
+                                self.nextPage(pokemontab: pokemons)
+                            }
+                        })
+                    })
+                }
+            })
+        })
+    }
+    
+    public func nextPage(pokemontab: [Pokemon]){
+        var localPoke = pokemontab
+        localPoke.sort {
+            $0.id < $1.id
+        }
+        let evolution = EvolutionViewController.newInstance(pokemon: localPoke)
+        self.navigationController?.pushViewController(evolution, animated: true)
+    }
+    
+    @objc private func pushEvolution() {
+        getEvolutionChain()
     }
 }
