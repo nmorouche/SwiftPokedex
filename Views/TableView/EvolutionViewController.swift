@@ -19,6 +19,7 @@ class EvolutionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
+        setupTitle()
         setBackground()
     }
     
@@ -27,6 +28,10 @@ class EvolutionViewController: UIViewController {
             let evc = EvolutionViewController()
             evc.pokemons = pokemon
             return evc
+    }
+    
+    func setupTitle() {
+        self.navigationItem.title = "Évolution"
     }
     
     func setupTableView() {

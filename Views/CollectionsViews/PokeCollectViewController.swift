@@ -17,7 +17,7 @@ class PokeCollectViewController: UIViewController {
     var pokemonSearch : [Pokemon]!
     
     @IBOutlet var searchbar: UISearchBar!
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet var collectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,9 +64,6 @@ class PokeCollectViewController: UIViewController {
     }
     
     @objc func handleLongPress(gesture: UILongPressGestureRecognizer!) {
-        if (gesture.state != .ended) {
-            return
-        }
         let p = gesture.location(in: self.collectionView)
         if let indexPath = self.collectionView.indexPathForItem(at: p) {
             let pokeAdd = Pokemon(id: self.pokemonSearch[indexPath.row].id, name: self.pokemonSearch[indexPath.row].name, sprite: self.pokemonSearch[indexPath.row].sprite, types: self.pokemonSearch[indexPath.row].types)

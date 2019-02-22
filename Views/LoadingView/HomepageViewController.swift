@@ -44,7 +44,7 @@ class HomepageViewController: UIViewController {
     }
     
     public func nextPage(pokemontab: [Pokemon]){
-        if pokemontab.count == 850 {
+        if pokemontab.count == 800 {
             self.pokemons.sort {
                 $0.id < $1.id
             }

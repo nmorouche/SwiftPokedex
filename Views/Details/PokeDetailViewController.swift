@@ -79,6 +79,7 @@ class PokeDetailViewController: UIViewController {
         if evolution == 0 {
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Evolution", style: .plain, target: self, action: #selector(pushEvolution))
         }
+        self.navigationItem.title = pokemon.name
         shinyLabel.isHidden = true
         switchShiny.isEnabled = false
         switchShiny.isHidden = true

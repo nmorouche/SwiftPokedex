@@ -108,9 +108,6 @@ class FavorisViewController: UIViewController {
     @IBOutlet var FavCollectionView: UICollectionView!
     
     @objc func handleLongPress(gesture: UILongPressGestureRecognizer!) {
-        if gesture.state != .ended {
-            return
-        }
         let p = gesture.location(in: self.FavCollectionView)
         
         if let indexPath = self.FavCollectionView.indexPathForItem(at: p) {
