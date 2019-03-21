@@ -39,7 +39,7 @@ class HomepageViewController: UIViewController {
     public func loadingBackground(){
         let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
         backgroundImage.image = UIImage(named: "loadingbackground")
-        backgroundImage.contentMode =  UIViewContentMode.scaleAspectFill
+        backgroundImage.contentMode =  UIView.ContentMode.scaleAspectFill
         view.insertSubview(backgroundImage, at: 0)
     }
     

@@ -29,7 +29,7 @@ class FavorisViewController: UIViewController {
     func setBackground(){
         let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
         backgroundImage.image = UIImage(named: "background")
-        backgroundImage.contentMode =  UIViewContentMode.scaleAspectFill
+        backgroundImage.contentMode =  UIView.ContentMode.scaleAspectFill
         self.view.insertSubview(backgroundImage, at: 0)
     }
     
@@ -132,8 +132,8 @@ class FavorisViewController: UIViewController {
         let button = UIBarButtonItem(title: "ⓘ", style: .plain, target: self, action: #selector(alertHelper))
         let foregroundColor = UIColor(red: 0/255, green: 122/255, blue: 255/255, alpha: 1)
         button.setTitleTextAttributes([
-            NSAttributedStringKey.font: UIFont(name: "MarkerFelt-Thin", size: 24.0)!,
-            NSAttributedStringKey.foregroundColor: foregroundColor], for: .normal)
+            NSAttributedString.Key.font: UIFont(name: "MarkerFelt-Thin", size: 24.0)!,
+            NSAttributedString.Key.foregroundColor: foregroundColor], for: .normal)
         navigationItem.rightBarButtonItem = button
     }
     

@@ -71,7 +71,7 @@ class PokeDetailViewController: UIViewController {
     func setBackground(){
         let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
         backgroundImage.image = UIImage(named: "background")
-        backgroundImage.contentMode =  UIViewContentMode.scaleAspectFill
+        backgroundImage.contentMode =  UIView.ContentMode.scaleAspectFill
         self.view.insertSubview(backgroundImage, at: 0)
     }
     
