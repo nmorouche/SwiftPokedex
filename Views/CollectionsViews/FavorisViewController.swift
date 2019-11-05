@@ -11,7 +11,7 @@ import AVFoundation
 
 class FavorisViewController: UIViewController {
     var pokemons: [Pokemon]!
-    var player: AVAudioPlayer = AVAudioPlayer()
+    var player: AVAudioPlayer!
     
     override func viewDidLoad() {
         super.viewDidLoad()

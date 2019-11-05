@@ -12,7 +12,7 @@ import AVFoundation
 
 class PokeCollectViewController: UIViewController {
     
-    var player : AVAudioPlayer = AVAudioPlayer()
+    var player : AVAudioPlayer!
     var pokemons : [Pokemon]!
     var pokemonSearch : [Pokemon]!
     

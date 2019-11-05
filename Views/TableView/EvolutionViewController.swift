@@ -12,7 +12,7 @@ import AVFoundation
 class EvolutionViewController: UIViewController {
     
     var pokemons: [Pokemon]!
-    var player : AVAudioPlayer = AVAudioPlayer()
+    var player : AVAudioPlayer!
     @IBOutlet var tableView: UITableView!
     
     

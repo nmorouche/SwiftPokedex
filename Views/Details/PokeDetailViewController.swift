@@ -12,7 +12,7 @@ import AVFoundation
 
 class PokeDetailViewController: UIViewController {
 
-    var player : AVAudioPlayer = AVAudioPlayer()
+    var player : AVAudioPlayer!
     var pokemons: [Pokemon] = []
     @IBOutlet var shinyLabel: UILabel!
     @IBOutlet var name: UILabel!
