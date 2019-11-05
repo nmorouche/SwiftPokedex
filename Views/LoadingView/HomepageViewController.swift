@@ -13,7 +13,7 @@ import AVFoundation
 class HomepageViewController: UIViewController {
     
     public var pokemons: [Pokemon] = []
-    var player : AVAudioPlayer = AVAudioPlayer()
+    var player : AVAudioPlayer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
